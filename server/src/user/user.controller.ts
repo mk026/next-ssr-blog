@@ -1,24 +1,27 @@
 import { Controller, Delete, Get, Put } from '@nestjs/common';
+import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
+  constructor(private readonly userService: UserService) {}
+
   @Get()
   getUsers() {
-    return 'Get all users';
+    return this.userService.getUsers();
   }
 
   @Get()
   getUser() {
-    return 'Get single user';
+    return this.userService.getUser();
   }
 
   @Put()
   updateUser() {
-    return 'Update user';
+    return this.userService.updateUser();
   }
 
   @Delete()
   deleteUser() {
-    return 'Delete user';
+    return this.userService.deleteUser();
   }
 }
