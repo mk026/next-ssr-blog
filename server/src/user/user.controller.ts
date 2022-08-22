@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -13,6 +13,11 @@ export class UserController {
   @Get()
   getUser() {
     return this.userService.getUser();
+  }
+
+  @Post()
+  addUser() {
+    return this.userService.addUser();
   }
 
   @Put()

@@ -10,6 +10,10 @@ export class UserService {
     return 'Get single user';
   }
 
+  addUser() {
+    return 'Add new user';
+  }
+
   updateUser() {
     return 'Update user';
   }
