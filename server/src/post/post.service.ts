@@ -6,6 +6,10 @@ export class PostService {
     return 'Get all posts';
   }
 
+  getPost() {
+    return 'Get single post';
+  }
+
   addPost() {
     return 'Add new post';
   }

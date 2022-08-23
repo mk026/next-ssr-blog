@@ -10,6 +10,11 @@ export class PostController {
     return this.postService.getPosts();
   }
 
+  @Get()
+  getPost() {
+    return this.postService.getPost();
+  }
+
   @Post()
   addPost() {
     return this.postService.addPost();
