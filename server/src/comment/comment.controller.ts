@@ -1,24 +1,27 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { CommentService } from './comment.service';
 
 @Controller('comments')
 export class CommentController {
+  constructor(private readonly commentService: CommentService) {}
+
   @Get()
   getComments() {
-    return 'All comments';
+    return this.commentService.getComments();
   }
 
   @Post()
   addComment() {
-    return 'Add comment';
+    return this.commentService.addComment();
   }
 
   @Put()
   updateComment() {
-    return 'Update comment';
+    return this.commentService.updateComment();
   }
 
   @Delete()
   deleteComment() {
-    return 'Delete comment';
+    return this.commentService.deleteComment();
   }
 }
