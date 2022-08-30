@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CommentService } from './comment.service';
 
 @Controller('comments')
@@ -21,7 +29,7 @@ export class CommentController {
   }
 
   @Delete(':id')
-  deleteComment(@Param('id') id: string) {
+  deleteComment(@Param('id', ParseIntPipe) id: number) {
     return this.commentService.deleteComment(id);
   }
 }
