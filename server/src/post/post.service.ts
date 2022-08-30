@@ -18,7 +18,7 @@ export class PostService {
     return 'Update post';
   }
 
-  deletePost() {
-    return 'Delete post';
+  deletePost(id: string) {
+    return `Deleting post with id ${id}`;
   }
 }
