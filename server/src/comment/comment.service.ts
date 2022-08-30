@@ -14,7 +14,7 @@ export class CommentService {
     return 'Update comment';
   }
 
-  deleteComment() {
-    return 'Delete comment';
+  deleteComment(id: string) {
+    return `Deleting comment with id ${id}`;
   }
 }

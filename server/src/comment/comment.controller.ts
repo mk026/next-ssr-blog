@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CommentService } from './comment.service';
 
 @Controller('comments')
@@ -20,8 +20,8 @@ export class CommentController {
     return this.commentService.updateComment();
   }
 
-  @Delete()
-  deleteComment() {
-    return this.commentService.deleteComment();
+  @Delete(':id')
+  deleteComment(@Param('id') id: string) {
+    return this.commentService.deleteComment(id);
   }
 }
