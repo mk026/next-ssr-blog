@@ -18,7 +18,7 @@ export class UserService {
     return 'Update user';
   }
 
-  deleteUser() {
-    return 'Delete user';
+  deleteUser(id: string) {
+    return `Deleting user with id ${id}`;
   }
 }
