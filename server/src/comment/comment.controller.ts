@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -8,6 +9,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
+import { CreateCommentDto } from './dto/create-comment.dto';
 
 @Controller('comments')
 export class CommentController {
@@ -19,8 +21,8 @@ export class CommentController {
   }
 
   @Post()
-  addComment() {
-    return this.commentService.addComment();
+  addComment(@Body() createCommentDto: CreateCommentDto) {
+    return this.commentService.addComment(createCommentDto);
   }
 
   @Put()

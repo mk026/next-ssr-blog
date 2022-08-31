@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CreateCommentDto } from './dto/create-comment.dto';
 
 @Injectable()
 export class CommentService {
@@ -6,8 +7,8 @@ export class CommentService {
     return 'Get all comments';
   }
 
-  addComment() {
-    return 'Add new comment';
+  addComment(createCommentDto: CreateCommentDto) {
+    return createCommentDto;
   }
 
   updateComment() {
