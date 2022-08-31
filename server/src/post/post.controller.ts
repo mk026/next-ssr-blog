@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -7,6 +8,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { CreatePostDto } from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
 import { PostService } from './post.service';
 
 @Controller('posts')
@@ -24,13 +27,13 @@ export class PostController {
   }
 
   @Post()
-  addPost() {
-    return this.postService.addPost();
+  addPost(@Body() createPostDto: CreatePostDto) {
+    return this.postService.addPost(createPostDto);
   }
 
   @Put()
-  updatePost() {
-    return this.postService.updatePost();
+  updatePost(@Body() updatePostDto: UpdatePostDto) {
+    return this.postService.updatePost(updatePostDto);
   }
 
   @Delete(':id')
