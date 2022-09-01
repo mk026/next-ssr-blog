@@ -1,6 +1,6 @@
-import { IsNotEmpty } from 'class-validator';
+import { OmitType } from '@nestjs/mapped-types';
+import { CreateCommentDto } from './create-comment.dto';
 
-export class UpdateCommentDto {
-  @IsNotEmpty()
-  readonly content: string;
-}
+export class UpdateCommentDto extends OmitType(CreateCommentDto, [
+  'userId',
+] as const) {}
