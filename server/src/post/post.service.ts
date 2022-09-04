@@ -8,8 +8,8 @@ export class PostService {
     return 'Get all posts';
   }
 
-  getPost() {
-    return 'Get single post';
+  getPost(id: number) {
+    return `Post with id ${id}`;
   }
 
   addPost(createPostDto: CreatePostDto) {

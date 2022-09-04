@@ -21,9 +21,9 @@ export class PostController {
     return this.postService.getPosts();
   }
 
-  @Get()
-  getPost() {
-    return this.postService.getPost();
+  @Get(':id')
+  getPost(@Param('id', ParseIntPipe) id: number) {
+    return this.postService.getPost(id);
   }
 
   @Post()
