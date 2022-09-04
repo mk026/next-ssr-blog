@@ -6,8 +6,8 @@ export class UserService {
     return 'Get all users';
   }
 
-  getUser() {
-    return 'Get single user';
+  getUser(id: number) {
+    return `Get user with id ${id}`;
   }
 
   updateUser() {
