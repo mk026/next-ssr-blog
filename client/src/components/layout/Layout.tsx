@@ -1,8 +1,14 @@
 import { Container } from "@mui/material";
 import { FC, PropsWithChildren } from "react";
+import Navbar from "../navbar/Navbar";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
-  return <Container>{children}</Container>;
+  return (
+    <>
+      <Navbar />
+      <Container>{children}</Container>
+    </>
+  );
 };
 
 export default Layout;
