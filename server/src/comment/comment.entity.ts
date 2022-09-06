@@ -7,4 +7,7 @@ export class Comment {
 
   @Column()
   content: string;
+
+  @Column()
+  userId: number;
 }
