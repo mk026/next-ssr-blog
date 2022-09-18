@@ -1,15 +1,24 @@
-import { Button } from "@mui/material";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "@mui/material";
+
+import {
+  PostFormValues,
+  postValidationSchema,
+} from "../../../validation/postValidation";
 
 const AddPostForm: FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur" });
+  } = useForm<PostFormValues>({
+    mode: "onBlur",
+    resolver: yupResolver(postValidationSchema),
+  });
 
-  const addPostHandler = (values: any) => {
+  const addPostHandler = (values: PostFormValues) => {
     console.log(values);
   };
 
@@ -19,12 +28,12 @@ const AddPostForm: FC = () => {
         Title
         <input type="text" {...register("title", { required: true })} />
       </label>
-      {errors.title && <p>Title is a required field</p>}
+      {errors.title && <p>{errors.title.message}</p>}
       <label>
         Content
         <input type="text" {...register("content", { required: true })} />
       </label>
-      {errors.content && <p>Content is a required field</p>}
+      {errors.content && <p>{errors.content.message}</p>}
       <Button type="submit">Add post</Button>
     </form>
   );
