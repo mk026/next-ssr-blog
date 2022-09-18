@@ -20,7 +20,7 @@ const AddCommentForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(addCommentHandler)}>
-      <input type="text" {...register("content", { required: true })} />
+      <input type="text" {...register("content")} />
       <Button type="submit">Add comment</Button>
     </form>
   );

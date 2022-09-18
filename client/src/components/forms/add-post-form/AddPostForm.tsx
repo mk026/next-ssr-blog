@@ -26,12 +26,12 @@ const AddPostForm: FC = () => {
     <form onSubmit={handleSubmit(addPostHandler)}>
       <label>
         Title
-        <input type="text" {...register("title", { required: true })} />
+        <input type="text" {...register("title")} />
       </label>
       {errors.title && <p>{errors.title.message}</p>}
       <label>
         Content
-        <input type="text" {...register("content", { required: true })} />
+        <input type="text" {...register("content")} />
       </label>
       {errors.content && <p>{errors.content.message}</p>}
       <Button type="submit">Add post</Button>
