@@ -1,11 +1,20 @@
-import { Button } from "@mui/material";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "@mui/material";
+
+import {
+  CommentFormValues,
+  commentValidationSchema,
+} from "../../../validation/commentValidation";
 
 const AddCommentForm: FC = () => {
-  const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const { register, handleSubmit } = useForm<CommentFormValues>({
+    mode: "onBlur",
+    resolver: yupResolver(commentValidationSchema),
+  });
 
-  const addCommentHandler = (values: any) => {
+  const addCommentHandler = (values: CommentFormValues) => {
     console.log(values);
   };
 
