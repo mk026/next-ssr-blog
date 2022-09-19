@@ -4,6 +4,9 @@ export class CreateCommentDto {
   @IsNumber()
   readonly userId: number;
 
+  @IsNumber()
+  readonly postId: number;
+
   @IsNotEmpty()
   @MinLength(1)
   @MaxLength(500)

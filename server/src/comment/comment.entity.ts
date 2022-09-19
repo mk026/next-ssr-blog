@@ -10,4 +10,7 @@ export class Comment {
 
   @Column()
   userId: number;
+
+  @Column()
+  postId: number;
 }
