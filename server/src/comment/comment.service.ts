@@ -16,8 +16,9 @@ export class CommentService {
     return this.commentRepository.find();
   }
 
-  addComment(createCommentDto: CreateCommentDto) {
-    return createCommentDto;
+  async addComment(createCommentDto: CreateCommentDto) {
+    const comment = this.commentRepository.create(createCommentDto);
+    await this.commentRepository.save(comment);
   }
 
   updateComment(updateCommentDto: UpdateCommentDto) {

@@ -23,8 +23,9 @@ export class PostService {
     return found;
   }
 
-  addPost(createPostDto: CreatePostDto) {
-    return createPostDto;
+  async addPost(createPostDto: CreatePostDto) {
+    const post = this.postRepository.create(createPostDto);
+    await this.postRepository.save(post);
   }
 
   updatePost(updatePostDto: UpdatePostDto) {
