@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
+import { SignupCredentialsDto } from 'src/auth/dto/signup-credentials.dto';
 
 @Injectable()
 export class UserService {
@@ -19,6 +20,11 @@ export class UserService {
       throw new NotFoundException(`User with id ${id} not found`);
     }
     return found;
+  }
+
+  async addUser(signupCredentialsDto: SignupCredentialsDto) {
+    const user = this.userRepository.create(signupCredentialsDto);
+    await this.userRepository.save(user);
   }
 
   updateUser() {
