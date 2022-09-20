@@ -32,7 +32,10 @@ export class PostService {
     return updatePostDto;
   }
 
-  deletePost(id: number) {
-    return `Deleting post with id ${id}`;
+  async deletePost(id: number) {
+    const result = await this.postRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
   }
 }

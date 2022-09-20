@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Comment } from './comment.entity';
@@ -25,7 +25,10 @@ export class CommentService {
     return updateCommentDto;
   }
 
-  deleteComment(id: number) {
-    return `Deleting comment with id ${id}`;
+  async deleteComment(id: number) {
+    const result = await this.commentRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Comment with id ${id} not found`);
+    }
   }
 }
