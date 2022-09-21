@@ -1,35 +1,35 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
+import { authApi } from "../../services/authApi";
 
 export interface AuthState {
   isAuth: boolean;
-  isLoading: boolean;
-  error: string | null;
+  token: string | null;
 }
 
 const initialState: AuthState = {
   isAuth: false,
-  isLoading: false,
-  error: null,
+  token: null,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    authStart(state) {
-      state.error = null;
-      state.isLoading = true;
-    },
-    authSuccess(state) {
-      state.isLoading = true;
-      state.isAuth = true;
-    },
-    authError(state, action: PayloadAction<string>) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-    setUnauth(state) {
-      state.isAuth = false;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      authApi.endpoints.signin.matchFulfilled,
+      (state, { payload }) => {
+        state.isAuth = true;
+        state.token = payload.token;
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.signup.matchFulfilled,
+      (state, { payload }) => {
+        state.isAuth = true;
+        state.token = payload.token;
+      }
+    );
   },
 });
