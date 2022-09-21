@@ -1,20 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { IUser } from "../../models/IUser";
+import { authApi } from "../../services/authApi";
 
 export interface UserState {
   user: IUser | null;
-  isLoading: boolean;
-  error: string | null;
 }
 
 const initialState: UserState = {
   user: null,
-  isLoading: false,
-  error: null,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      authApi.endpoints.signin.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+      }
+    );
+    builder.addMatcher(
+      authApi.endpoints.signup.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+      }
+    );
+  },
 });
