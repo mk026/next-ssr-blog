@@ -4,10 +4,10 @@ export const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPostComments: builder.query({ query: () => "/comments" }),
     addPostComment: builder.mutation({
-      query: () => ({ url: "/comments", method: "POST" }),
+      query: (body) => ({ url: "/comments", method: "POST", body }),
     }),
     updatePostComment: builder.mutation({
-      query: () => ({ url: "/comments", method: "PUT" }),
+      query: (body) => ({ url: "/comments", method: "PUT", body }),
     }),
     deletePostComment: builder.mutation({
       query: (id) => ({ url: `/comments/${id}`, method: "DELETE" }),
