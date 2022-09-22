@@ -8,13 +8,16 @@ interface AuthResponse {
   token: string;
 }
 
+export const SIGNUP_URL = "/signup";
+export const SIGNIN_URL = "/signin";
+
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    signin: builder.mutation<AuthResponse, SigninFormValues>({
-      query: () => "/signin",
-    }),
     signup: builder.mutation<AuthResponse, SignupFormValues>({
-      query: () => "/signup",
+      query: () => SIGNUP_URL,
+    }),
+    signin: builder.mutation<AuthResponse, SigninFormValues>({
+      query: () => SIGNIN_URL,
     }),
   }),
 });
