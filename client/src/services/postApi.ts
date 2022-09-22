@@ -9,8 +9,15 @@ export const postApi = baseApi.injectEndpoints({
     updatePost: builder.mutation({
       query: (body) => ({ url: "/posts", method: "PUT", body }),
     }),
+    deletePost: builder.mutation({
+      query: (id) => ({ url: `/posts/${id}`, method: "DELETE" }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useAddPostMutation, useUpdatePostMutation } =
-  postApi;
+export const {
+  useGetPostsQuery,
+  useAddPostMutation,
+  useUpdatePostMutation,
+  useDeletePostMutation,
+} = postApi;
