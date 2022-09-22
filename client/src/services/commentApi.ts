@@ -6,6 +6,9 @@ export const commentApi = baseApi.injectEndpoints({
     addPostComment: builder.mutation({
       query: () => ({ url: "/comments", method: "POST" }),
     }),
+    updatePostComment: builder.mutation({
+      query: () => ({ url: "/comments", method: "PUT" }),
+    }),
     deletePostComment: builder.mutation({
       query: (id) => ({ url: `/comments/${id}`, method: "DELETE" }),
     }),
@@ -15,5 +18,6 @@ export const commentApi = baseApi.injectEndpoints({
 export const {
   useGetPostCommentsQuery,
   useAddPostCommentMutation,
+  useUpdatePostCommentMutation,
   useDeletePostCommentMutation,
 } = commentApi;
