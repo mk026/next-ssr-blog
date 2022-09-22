@@ -6,7 +6,11 @@ export const postApi = baseApi.injectEndpoints({
     addPost: builder.mutation({
       query: (body) => ({ url: "/posts", method: "POST", body }),
     }),
+    updatePost: builder.mutation({
+      query: (body) => ({ url: "/posts", method: "PUT", body }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useAddPostMutation } = postApi;
+export const { useGetPostsQuery, useAddPostMutation, useUpdatePostMutation } =
+  postApi;
