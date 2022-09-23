@@ -1,5 +1,5 @@
 import { IUser } from "../models/IUser";
-import { baseApi } from "./baseApi";
+import { baseApi, HttpMethod } from "./baseApi";
 
 export const USERS_URL = "/users";
 
@@ -9,10 +9,10 @@ export const userApi = baseApi.injectEndpoints({
       query: (id) => ({ url: `${USERS_URL}/${id}` }),
     }),
     updateUser: builder.mutation<IUser, Partial<IUser>>({
-      query: (body) => ({ url: USERS_URL, method: "PUT", body }),
+      query: (body) => ({ url: USERS_URL, method: HttpMethod.PUT, body }),
     }),
     deleteUser: builder.mutation<void, string>({
-      query: (id) => ({ url: `${USERS_URL}/${id}`, method: "DELETE" }),
+      query: (id) => ({ url: `${USERS_URL}/${id}`, method: HttpMethod.DELETE }),
     }),
   }),
 });
