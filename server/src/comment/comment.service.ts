@@ -12,8 +12,8 @@ export class CommentService {
     private readonly commentRepository: Repository<Comment>,
   ) {}
 
-  getComments() {
-    return this.commentRepository.find();
+  getComments(postId: number) {
+    return this.commentRepository.find({ where: { postId } });
   }
 
   async addComment(createCommentDto: CreateCommentDto) {

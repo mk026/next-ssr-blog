@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -17,8 +18,8 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Get()
-  getComments() {
-    return this.commentService.getComments();
+  getComments(@Query('postId', ParseIntPipe) postId: number) {
+    return this.commentService.getComments(postId);
   }
 
   @Post()
