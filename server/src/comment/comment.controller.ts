@@ -27,9 +27,12 @@ export class CommentController {
     return this.commentService.addComment(createCommentDto);
   }
 
-  @Put()
-  updateComment(@Body() updateCommentDto: UpdateCommentDto) {
-    return this.commentService.updateComment(updateCommentDto);
+  @Put(':id')
+  updateComment(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateCommentDto: UpdateCommentDto,
+  ) {
+    return this.commentService.updateComment(id, updateCommentDto);
   }
 
   @Delete(':id')

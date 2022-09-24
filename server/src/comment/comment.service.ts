@@ -21,7 +21,7 @@ export class CommentService {
     await this.commentRepository.save(comment);
   }
 
-  updateComment(updateCommentDto: UpdateCommentDto) {
+  updateComment(id: number, updateCommentDto: UpdateCommentDto) {
     return updateCommentDto;
   }
 
