@@ -28,8 +28,11 @@ export class PostService {
     await this.postRepository.save(post);
   }
 
-  updatePost(id: number, updatePostDto: UpdatePostDto) {
-    return updatePostDto;
+  async updatePost(id: number, updatePostDto: UpdatePostDto) {
+    const result = await this.postRepository.update(id, updatePostDto);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Post with id ${id} not found`);
+    }
   }
 
   async deletePost(id: number) {
