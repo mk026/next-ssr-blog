@@ -28,7 +28,7 @@ export class PostService {
     await this.postRepository.save(post);
   }
 
-  updatePost(updatePostDto: UpdatePostDto) {
+  updatePost(id: number, updatePostDto: UpdatePostDto) {
     return updatePostDto;
   }
 

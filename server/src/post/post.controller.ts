@@ -31,9 +31,12 @@ export class PostController {
     return this.postService.addPost(createPostDto);
   }
 
-  @Put()
-  updatePost(@Body() updatePostDto: UpdatePostDto) {
-    return this.postService.updatePost(updatePostDto);
+  @Put(':id')
+  updatePost(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updatePostDto: UpdatePostDto,
+  ) {
+    return this.postService.updatePost(id, updatePostDto);
   }
 
   @Delete(':id')
