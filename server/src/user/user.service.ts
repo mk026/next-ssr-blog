@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import bcryptjs from 'bcryptjs';
 import { User } from './user.entity';
 import { SignupCredentialsDto } from 'src/auth/dto/signup-credentials.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -42,8 +43,8 @@ export class UserService {
     await this.userRepository.save(user);
   }
 
-  updateUser() {
-    return 'Update user';
+  updateUser(id: number, updateUserDto: UpdateUserDto) {
+    return updateUserDto;
   }
 
   async deleteUser(id: number) {
