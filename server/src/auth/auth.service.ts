@@ -8,8 +8,9 @@ import { SignupCredentialsDto } from './dto/signup-credentials.dto';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  signup(signupCredentialsDto: SignupCredentialsDto) {
-    return this.userService.addUser(signupCredentialsDto);
+  async signup(signupCredentialsDto: SignupCredentialsDto) {
+    const user = await this.userService.addUser(signupCredentialsDto);
+    return { user: { name: user.name, email: user.email } };
   }
 
   async signin(signinCredentialsDto: SigninCredentialsDto) {

@@ -46,6 +46,7 @@ export class UserService {
       password: passwordHash,
     });
     await this.userRepository.save(user);
+    return user;
   }
 
   async updateUser(id: number, updateUserDto: UpdateUserDto) {
