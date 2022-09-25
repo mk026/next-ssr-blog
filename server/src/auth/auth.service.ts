@@ -6,6 +6,7 @@ import { UserService } from 'src/user/user.service';
 import { AuthResponse } from './auth-response.interface';
 import { SigninCredentialsDto } from './dto/signin-credentials.dto';
 import { SignupCredentialsDto } from './dto/signup-credentials.dto';
+import { JwtPayload } from './jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +19,7 @@ export class AuthService {
     signupCredentialsDto: SignupCredentialsDto,
   ): Promise<AuthResponse> {
     const user = await this.userService.addUser(signupCredentialsDto);
-    const payload = { userId: user.id };
+    const payload: JwtPayload = { userId: user.id };
     const accessToken = this.jwtService.sign(payload);
     return {
       user: { name: user.name, email: user.email },
@@ -38,7 +39,7 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('Incorrect email or password');
     }
-    const payload = { userId: foundUser.id };
+    const payload: JwtPayload = { userId: foundUser.id };
     const accessToken = this.jwtService.sign(payload);
     return {
       user: { name: foundUser.name, email: foundUser.email },
