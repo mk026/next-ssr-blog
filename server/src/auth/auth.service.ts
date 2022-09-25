@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import bcryptjs from 'bcryptjs';
 import { UserService } from 'src/user/user.service';
 import { SigninCredentialsDto } from './dto/signin-credentials.dto';
 import { SignupCredentialsDto } from './dto/signup-credentials.dto';
@@ -11,7 +12,16 @@ export class AuthService {
     return this.userService.addUser(signupCredentialsDto);
   }
 
-  signin(signinCredentialsDto: SigninCredentialsDto) {
-    return `Signing in ${signinCredentialsDto.email}...`;
+  async signin(signinCredentialsDto: SigninCredentialsDto) {
+    const { email, password } = signinCredentialsDto;
+    const foundUser = await this.userService.getUserByEmail(email);
+    if (!foundUser) {
+      throw new UnauthorizedException('Incorrect email or password');
+    }
+    const isPasswordValid = bcryptjs.compareSync(password, foundUser.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Incorrect email or password');
+    }
+    return { user: { name: foundUser.name, email: foundUser.email } };
   }
 }

@@ -28,6 +28,11 @@ export class UserService {
     return found;
   }
 
+  async getUserByEmail(email: string) {
+    const found = await this.userRepository.findOne({ where: { email } });
+    return found;
+  }
+
   async addUser(signupCredentialsDto: SignupCredentialsDto) {
     const foundUser = this.userRepository.findOne({
       where: { email: signupCredentialsDto.email },
