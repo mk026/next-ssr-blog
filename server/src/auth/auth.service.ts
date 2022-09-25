@@ -1,5 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import bcryptjs from 'bcryptjs';
+
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { SigninCredentialsDto } from './dto/signin-credentials.dto';
@@ -7,17 +9,26 @@ import { SignupCredentialsDto } from './dto/signup-credentials.dto';
 
 export interface AuthResponse {
   user: Pick<User, 'name' | 'email'>;
+  accessToken: string;
 }
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async signup(
     signupCredentialsDto: SignupCredentialsDto,
   ): Promise<AuthResponse> {
     const user = await this.userService.addUser(signupCredentialsDto);
-    return { user: { name: user.name, email: user.email } };
+    const payload = { userId: user.id };
+    const accessToken = this.jwtService.sign(payload);
+    return {
+      user: { name: user.name, email: user.email },
+      accessToken,
+    };
   }
 
   async signin(
@@ -32,6 +43,11 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('Incorrect email or password');
     }
-    return { user: { name: foundUser.name, email: foundUser.email } };
+    const payload = { userId: foundUser.id };
+    const accessToken = this.jwtService.sign(payload);
+    return {
+      user: { name: foundUser.name, email: foundUser.email },
+      accessToken,
+    };
   }
 }
