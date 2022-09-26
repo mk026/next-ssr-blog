@@ -8,7 +8,9 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -23,11 +25,13 @@ export class CommentController {
   }
 
   @Post()
+  @UseGuards(AuthGuard())
   addComment(@Body() createCommentDto: CreateCommentDto) {
     return this.commentService.addComment(createCommentDto);
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard())
   updateComment(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCommentDto: UpdateCommentDto,
@@ -36,6 +40,7 @@ export class CommentController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
   deleteComment(@Param('id', ParseIntPipe) id: number) {
     return this.commentService.deleteComment(id);
   }
