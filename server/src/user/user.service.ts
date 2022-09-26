@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import bcryptjs from 'bcryptjs';
+import * as bcryptjs from 'bcryptjs';
 import { User } from './user.entity';
 import { SignupCredentialsDto } from 'src/auth/dto/signup-credentials.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   async addUser(signupCredentialsDto: SignupCredentialsDto) {
-    const foundUser = this.userRepository.findOne({
+    const foundUser = await this.userRepository.findOne({
       where: { email: signupCredentialsDto.email },
     });
     if (foundUser) {
