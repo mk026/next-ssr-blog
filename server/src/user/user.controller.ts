@@ -6,7 +6,9 @@ import {
   Param,
   ParseIntPipe,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
@@ -25,6 +27,7 @@ export class UserController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard())
   updateUser(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
@@ -33,6 +36,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
   deleteUser(@Param('id', ParseIntPipe) id: number) {
     return this.userService.deleteUser(id);
   }
