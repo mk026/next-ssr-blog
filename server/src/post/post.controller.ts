@@ -7,7 +7,9 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PostService } from './post.service';
@@ -27,11 +29,13 @@ export class PostController {
   }
 
   @Post()
+  @UseGuards(AuthGuard())
   addPost(@Body() createPostDto: CreatePostDto) {
     return this.postService.addPost(createPostDto);
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard())
   updatePost(
     @Param('id', ParseIntPipe) id: number,
     @Body() updatePostDto: UpdatePostDto,
@@ -40,6 +44,7 @@ export class PostController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
   deletePost(@Param('id', ParseIntPipe) id: number) {
     return this.postService.deletePost(id);
   }
