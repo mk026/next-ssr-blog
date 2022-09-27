@@ -2,9 +2,6 @@ import { IsNotEmpty, IsNumber, MaxLength, MinLength } from 'class-validator';
 
 export class CreateCommentDto {
   @IsNumber()
-  readonly userId: number;
-
-  @IsNumber()
   readonly postId: number;
 
   @IsNotEmpty()

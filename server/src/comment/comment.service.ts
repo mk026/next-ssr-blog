@@ -19,8 +19,13 @@ export class CommentService {
     return comments;
   }
 
-  async addComment(createCommentDto: CreateCommentDto) {
-    const comment = this.commentRepository.create(createCommentDto);
+  async addComment(createCommentDto: CreateCommentDto, userId: number) {
+    const { postId, content } = createCommentDto;
+    const comment = this.commentRepository.create({
+      content,
+      post: { id: postId },
+      user: { id: userId },
+    });
     await this.commentRepository.save(comment);
   }
 

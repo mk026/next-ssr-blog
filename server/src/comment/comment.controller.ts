@@ -11,6 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../auth/get-user.decorator';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -26,8 +27,11 @@ export class CommentController {
 
   @Post()
   @UseGuards(AuthGuard())
-  addComment(@Body() createCommentDto: CreateCommentDto) {
-    return this.commentService.addComment(createCommentDto);
+  addComment(
+    @Body() createCommentDto: CreateCommentDto,
+    @GetUser() userId: number,
+  ) {
+    return this.commentService.addComment(createCommentDto, userId);
   }
 
   @Put(':id')
