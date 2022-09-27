@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../auth/get-user.decorator';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PostService } from './post.service';
@@ -30,8 +31,8 @@ export class PostController {
 
   @Post()
   @UseGuards(AuthGuard())
-  addPost(@Body() createPostDto: CreatePostDto) {
-    return this.postService.addPost(createPostDto);
+  addPost(@Body() createPostDto: CreatePostDto, @GetUser() userId: number) {
+    return this.postService.addPost(createPostDto, userId);
   }
 
   @Put(':id')
