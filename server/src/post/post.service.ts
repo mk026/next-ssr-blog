@@ -31,8 +31,11 @@ export class PostService {
     await this.postRepository.save(post);
   }
 
-  async updatePost(id: number, updatePostDto: UpdatePostDto) {
-    const result = await this.postRepository.update(id, updatePostDto);
+  async updatePost(id: number, updatePostDto: UpdatePostDto, userId: number) {
+    const result = await this.postRepository.update(id, {
+      ...updatePostDto,
+      user: { id: userId },
+    });
     if (result.affected === 0) {
       throw new NotFoundException(`Post with id ${id} not found`);
     }
