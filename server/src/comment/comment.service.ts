@@ -29,8 +29,15 @@ export class CommentService {
     await this.commentRepository.save(comment);
   }
 
-  async updateComment(id: number, updateCommentDto: UpdateCommentDto) {
-    const result = await this.commentRepository.update(id, updateCommentDto);
+  async updateComment(
+    id: number,
+    updateCommentDto: UpdateCommentDto,
+    userId: number,
+  ) {
+    const result = await this.commentRepository.update(id, {
+      ...updateCommentDto,
+      user: { id: userId },
+    });
     if (result.affected === 0) {
       throw new NotFoundException(`Comment with id ${id} not found`);
     }

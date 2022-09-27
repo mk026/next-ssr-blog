@@ -39,8 +39,9 @@ export class CommentController {
   updateComment(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCommentDto: UpdateCommentDto,
+    @GetUser() userId: number,
   ) {
-    return this.commentService.updateComment(id, updateCommentDto);
+    return this.commentService.updateComment(id, updateCommentDto, userId);
   }
 
   @Delete(':id')
