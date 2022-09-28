@@ -32,17 +32,20 @@ export class PostService {
   }
 
   async updatePost(id: number, updatePostDto: UpdatePostDto, userId: number) {
-    const result = await this.postRepository.update(id, {
-      ...updatePostDto,
-      user: { id: userId },
-    });
+    const result = await this.postRepository.update(
+      { id, user: { id: userId } },
+      updatePostDto,
+    );
     if (result.affected === 0) {
       throw new NotFoundException(`Post with id ${id} not found`);
     }
   }
 
-  async deletePost(id: number) {
-    const result = await this.postRepository.delete(id);
+  async deletePost(id: number, userId: number) {
+    const result = await this.postRepository.delete({
+      id,
+      user: { id: userId },
+    });
     if (result.affected === 0) {
       throw new NotFoundException(`Post with id ${id} not found`);
     }
