@@ -46,7 +46,10 @@ export class CommentController {
 
   @Delete(':id')
   @UseGuards(AuthGuard())
-  deleteComment(@Param('id', ParseIntPipe) id: number) {
-    return this.commentService.deleteComment(id);
+  deleteComment(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() userId: number,
+  ) {
+    return this.commentService.deleteComment(id, userId);
   }
 }

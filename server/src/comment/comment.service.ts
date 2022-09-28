@@ -34,17 +34,20 @@ export class CommentService {
     updateCommentDto: UpdateCommentDto,
     userId: number,
   ) {
-    const result = await this.commentRepository.update(id, {
-      ...updateCommentDto,
-      user: { id: userId },
-    });
+    const result = await this.commentRepository.update(
+      { id, user: { id: userId } },
+      updateCommentDto,
+    );
     if (result.affected === 0) {
       throw new NotFoundException(`Comment with id ${id} not found`);
     }
   }
 
-  async deleteComment(id: number) {
-    const result = await this.commentRepository.delete(id);
+  async deleteComment(id: number, userId: number) {
+    const result = await this.commentRepository.delete({
+      id,
+      user: { id: userId },
+    });
     if (result.affected === 0) {
       throw new NotFoundException(`Comment with id ${id} not found`);
     }
