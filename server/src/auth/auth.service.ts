@@ -26,8 +26,7 @@ export class AuthService {
     signupCredentialsDto: SignupCredentialsDto,
   ): Promise<AuthResponse> {
     const user = await this.createUser(signupCredentialsDto);
-    const payload: JwtPayload = { userId: user.id };
-    const accessToken = this.jwtService.sign(payload);
+    const accessToken = this.generateToken(user.id);
     return {
       user: { name: user.name, email: user.email },
       accessToken,
@@ -46,8 +45,7 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('Incorrect email or password');
     }
-    const payload: JwtPayload = { userId: foundUser.id };
-    const accessToken = this.jwtService.sign(payload);
+    const accessToken = this.generateToken(foundUser.id);
     return {
       user: { name: foundUser.name, email: foundUser.email },
       accessToken,
@@ -68,5 +66,10 @@ export class AuthService {
     });
     await this.userRepository.save(user);
     return user;
+  }
+
+  generateToken(userId: number) {
+    const payload: JwtPayload = { userId };
+    return this.jwtService.sign(payload);
   }
 }
