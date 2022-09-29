@@ -9,6 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../auth/get-user.decorator';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
@@ -26,18 +27,15 @@ export class UserController {
     return this.userService.getUser(id);
   }
 
-  @Put(':id')
+  @Put()
   @UseGuards(AuthGuard())
-  updateUser(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return this.userService.updateUser(id, updateUserDto);
+  updateUser(@Body() updateUserDto: UpdateUserDto, @GetUser() userId: number) {
+    return this.userService.updateUser(userId, updateUserDto);
   }
 
-  @Delete(':id')
+  @Delete()
   @UseGuards(AuthGuard())
-  deleteUser(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.deleteUser(id);
+  deleteUser(@GetUser() userId: number) {
+    return this.userService.deleteUser(userId);
   }
 }
