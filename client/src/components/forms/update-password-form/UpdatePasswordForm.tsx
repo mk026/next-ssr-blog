@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import {
   UpdatePasswordFormValues,
@@ -23,24 +23,30 @@ const UpdatePasswordForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(updatePasswordHandler)}>
-      <label>
-        Old password
-        <input type="password" {...register("oldPassword")} />
-      </label>
-      {errors.oldPassword && <p>{errors.oldPassword.message}</p>}
-      <label>
-        New password
-        <input type="password" {...register("password")} />
-      </label>
-      {errors.password && <p>{errors.password.message}</p>}
-      <label>
-        Confirm password
-        <input type="password" {...register("confirmPassword")} />
-      </label>
-      {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+    <Box component="form" onSubmit={handleSubmit(updatePasswordHandler)}>
+      <TextField
+        type="password"
+        label="Old password"
+        {...register("oldPassword")}
+        error={!!errors.oldPassword}
+        helperText={errors.oldPassword && errors.oldPassword.message}
+      />
+      <TextField
+        type="password"
+        label="New password"
+        {...register("password")}
+        error={!!errors.password}
+        helperText={errors.password && errors.password.message}
+      />
+      <TextField
+        type="password"
+        label="Confirm password"
+        {...register("confirmPassword")}
+        error={!!errors.confirmPassword}
+        helperText={errors.confirmPassword && errors.confirmPassword.message}
+      />
       <Button type="submit">Update password</Button>
-    </form>
+    </Box>
   );
 };
 
