@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import {
   SignupFormValues,
@@ -23,24 +23,36 @@ const SignupForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(signupHandler)}>
-      <label>
-        Name
-        <input type="text" {...register("name")} />
-      </label>
-      {errors.name && <p>{errors.name.message}</p>}
-      <label>
-        Email
-        <input type="text" {...register("email")} />
-      </label>
-      {errors.email && <p>{errors.email.message}</p>}
-      <label>
-        Password
-        <input type="password" {...register("password")} />
-      </label>
-      {errors.password && <p>{errors.password.message}</p>}
+    <Box component="form" onSubmit={handleSubmit(signupHandler)}>
+      <TextField
+        label="Name"
+        {...register("name")}
+        error={!!errors.name}
+        helperText={errors.name && errors.name.message}
+      />
+      <TextField
+        type="email"
+        label="Email"
+        {...register("email")}
+        error={!!errors.email}
+        helperText={errors.email && errors.email.message}
+      />
+      <TextField
+        type="password"
+        label="Password"
+        {...register("password")}
+        error={!!errors.password}
+        helperText={errors.password && errors.password.message}
+      />
+      <TextField
+        type="password"
+        label="Confirm password"
+        {...register("confirmPassword")}
+        error={!!errors.confirmPassword}
+        helperText={errors.confirmPassword && errors.confirmPassword.message}
+      />
       <Button type="submit">Signup</Button>
-    </form>
+    </Box>
   );
 };
 
