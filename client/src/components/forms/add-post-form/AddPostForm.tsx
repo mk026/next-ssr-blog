@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 import {
   PostFormValues,
@@ -10,7 +10,7 @@ import {
 import { useAddPostMutation } from "../../../services/postApi";
 
 const AddPostForm: FC = () => {
-  const [addPost] = useAddPostMutation();
+  const [addPost, { isLoading }] = useAddPostMutation();
   const {
     register,
     handleSubmit,
@@ -38,7 +38,13 @@ const AddPostForm: FC = () => {
         error={!!errors.content}
         helperText={errors.content && errors.content.message}
       />
-      <Button type="submit">Add post</Button>
+      <Button
+        type="submit"
+        disabled={isLoading}
+        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
+      >
+        Add post
+      </Button>
     </Box>
   );
 };
