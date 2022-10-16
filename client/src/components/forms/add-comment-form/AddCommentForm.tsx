@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import {
   CommentFormValues,
@@ -9,7 +9,11 @@ import {
 } from "../../../validation/commentValidation";
 
 const AddCommentForm: FC = () => {
-  const { register, handleSubmit } = useForm<CommentFormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CommentFormValues>({
     mode: "onBlur",
     resolver: yupResolver(commentValidationSchema),
   });
@@ -19,10 +23,16 @@ const AddCommentForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(addCommentHandler)}>
+    <Box onSubmit={handleSubmit(addCommentHandler)}>
+      <TextField
+        label="Add comment"
+        {...register("content")}
+        error={!!errors.content}
+        helperText={errors.content && errors.content.message}
+      />
       <input type="text" {...register("content")} />
       <Button type="submit">Add comment</Button>
-    </form>
+    </Box>
   );
 };
 
