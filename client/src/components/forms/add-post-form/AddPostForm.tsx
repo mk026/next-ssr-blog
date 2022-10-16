@@ -7,8 +7,10 @@ import {
   PostFormValues,
   postValidationSchema,
 } from "../../../validation/postValidation";
+import { useAddPostMutation } from "../../../services/postApi";
 
 const AddPostForm: FC = () => {
+  const [addPost] = useAddPostMutation();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ const AddPostForm: FC = () => {
   });
 
   const addPostHandler = (values: PostFormValues) => {
-    console.log(values);
+    addPost(values);
   };
 
   return (
