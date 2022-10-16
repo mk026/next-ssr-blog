@@ -1,4 +1,5 @@
 import { IComment } from "../models/IComment";
+import { CommentFormValues } from "../validation/commentValidation";
 import { baseApi, HttpMethod } from "./baseApi";
 
 export const COMMENTS_URL = "/comments";
@@ -8,7 +9,7 @@ export const commentApi = baseApi.injectEndpoints({
     getPostComments: builder.query<IComment[], string>({
       query: (postId) => ({ url: COMMENTS_URL, params: { postId } }),
     }),
-    addPostComment: builder.mutation<IComment, IComment>({
+    addPostComment: builder.mutation<IComment, CommentFormValues>({
       query: (body) => ({ url: COMMENTS_URL, method: HttpMethod.POST, body }),
     }),
     updatePostComment: builder.mutation<IComment, Partial<IComment>>({
