@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import {
   PostFormValues,
@@ -23,19 +23,21 @@ const AddPostForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(addPostHandler)}>
-      <label>
-        Title
-        <input type="text" {...register("title")} />
-      </label>
-      {errors.title && <p>{errors.title.message}</p>}
-      <label>
-        Content
-        <input type="text" {...register("content")} />
-      </label>
-      {errors.content && <p>{errors.content.message}</p>}
+    <Box component="form" onSubmit={handleSubmit(addPostHandler)}>
+      <TextField
+        label="Title"
+        {...register("title")}
+        error={!!errors.title}
+        helperText={errors.title && errors.title.message}
+      />
+      <TextField
+        label="Content"
+        {...register("content")}
+        error={!!errors.content}
+        helperText={errors.content && errors.content.message}
+      />
       <Button type="submit">Add post</Button>
-    </form>
+    </Box>
   );
 };
 
