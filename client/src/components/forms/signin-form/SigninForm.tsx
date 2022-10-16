@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 import {
   SigninFormValues,
@@ -10,7 +10,7 @@ import {
 import { useSigninMutation } from "../../../services/authApi";
 
 const SigninForm: FC = () => {
-  const [signin] = useSigninMutation();
+  const [signin, { isLoading }] = useSigninMutation();
   const {
     register,
     handleSubmit,
@@ -40,7 +40,13 @@ const SigninForm: FC = () => {
         error={!!errors.password}
         helperText={errors.password && errors.password.message}
       />
-      <Button type="submit">Signin</Button>
+      <Button
+        type="submit"
+        disabled={isLoading}
+        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
+      >
+        Signin
+      </Button>
     </Box>
   );
 };
