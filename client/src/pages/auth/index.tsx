@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import { useState } from "react";
 import { Button, Container, Typography } from "@mui/material";
 
@@ -11,14 +12,19 @@ const Auth: NextPage = () => {
   const toggleAuthMode = () => setIsSignin((prev) => !prev);
 
   return (
-    <Container>
-      <Typography variant="h1">Auth page</Typography>
-      {!isSignin && <SignupForm />}
-      {isSignin && <SigninForm />}
-      <Button onClick={toggleAuthMode}>
-        Switch to {isSignin ? "Signup" : "Signin"}
-      </Button>
-    </Container>
+    <>
+      <Head>
+        <title>Signin</title>
+      </Head>
+      <Container>
+        <Typography variant="h1">Auth page</Typography>
+        {!isSignin && <SignupForm />}
+        {isSignin && <SigninForm />}
+        <Button onClick={toggleAuthMode}>
+          Switch to {isSignin ? "Signup" : "Signin"}
+        </Button>
+      </Container>
+    </>
   );
 };
 

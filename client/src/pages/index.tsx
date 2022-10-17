@@ -1,8 +1,16 @@
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import type { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
-  return <Typography variant="h1">Next Blog</Typography>;
+  return (
+    <>
+      <Head>
+        <title>Next blog</title>
+      </Head>
+      <Typography variant="h1">Next Blog</Typography>
+    </>
+  );
 };
 
 export default Home;
