@@ -14,6 +14,9 @@ const Navbar: FC = () => {
         <li>
           <Link href="/profile">Profile</Link>
         </li>
+        <li>
+          <Link href="/auth">Auth</Link>
+        </li>
       </ul>
     </nav>
   );
