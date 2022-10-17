@@ -30,7 +30,6 @@ const AddCommentForm: FC = () => {
         error={!!errors.content}
         helperText={errors.content && errors.content.message}
       />
-      <input type="text" {...register("content")} />
       <Button type="submit">Add comment</Button>
     </Box>
   );
