@@ -7,8 +7,10 @@ import {
   CommentFormValues,
   commentValidationSchema,
 } from "../../../validation/commentValidation";
+import { useAddPostCommentMutation } from "../../../services/commentApi";
 
 const AddCommentForm: FC = () => {
+  const [addPostComment] = useAddPostCommentMutation();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ const AddCommentForm: FC = () => {
   });
 
   const addCommentHandler = (values: CommentFormValues) => {
-    console.log(values);
+    addPostComment(values);
   };
 
   return (
