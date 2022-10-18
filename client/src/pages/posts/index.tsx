@@ -3,7 +3,8 @@ import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
 import PostsList from "../../components/posts/posts-list/PostsList";
-import { useGetPostsQuery } from "../../services/postApi";
+import { postApi, useGetPostsQuery } from "../../services/postApi";
+import wrapper from "../../store";
 
 const Posts: NextPage = () => {
   const { data: posts = [] } = useGetPostsQuery();
@@ -22,3 +23,9 @@ const Posts: NextPage = () => {
 };
 
 export default Posts;
+
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(postApi.endpoints.getPosts.initiate());
+  await Promise.all(postApi.util.getRunningOperationPromises());
+  return { props: {} };
+});
