@@ -30,13 +30,13 @@ const AddPostForm: FC = () => {
         label="Title"
         {...register("title")}
         error={!!errors.title}
-        helperText={errors.title && errors.title.message}
+        helperText={errors.title?.message}
       />
       <TextField
         label="Content"
         {...register("content")}
         error={!!errors.content}
-        helperText={errors.content && errors.content.message}
+        helperText={errors.content?.message}
       />
       <Button
         type="submit"

@@ -31,14 +31,14 @@ const SigninForm: FC = () => {
         label="Email"
         {...register("email")}
         error={!!errors.email}
-        helperText={errors.email && errors.email.message}
+        helperText={errors.email?.message}
       />
       <TextField
         type="password"
         label="Password"
         {...register("password")}
         error={!!errors.password}
-        helperText={errors.password && errors.password.message}
+        helperText={errors.password?.message}
       />
       <Button
         type="submit"
