@@ -3,8 +3,11 @@ import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
 import PostsList from "../../components/posts/posts-list/PostsList";
+import { useGetPostsQuery } from "../../services/postApi";
 
 const Posts: NextPage = () => {
+  const { data: posts = [] } = useGetPostsQuery();
+
   return (
     <>
       <Head>
@@ -12,7 +15,7 @@ const Posts: NextPage = () => {
       </Head>
       <Container>
         <Typography variant="h1"> Posts page</Typography>
-        <PostsList />
+        <PostsList posts={posts} />
       </Container>
     </>
   );
