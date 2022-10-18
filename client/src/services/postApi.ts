@@ -7,6 +7,9 @@ export const POSTS_URL = "/posts";
 export const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPosts: builder.query<IPost[], void>({ query: () => POSTS_URL }),
+    getPost: builder.query<IPost, number>({
+      query: (id) => `${POSTS_URL}/${id}`,
+    }),
     addPost: builder.mutation<IPost, PostFormValues>({
       query: (body) => ({ url: POSTS_URL, method: HttpMethod.POST, body }),
     }),
@@ -21,6 +24,7 @@ export const postApi = baseApi.injectEndpoints({
 
 export const {
   useGetPostsQuery,
+  useGetPostQuery,
   useAddPostMutation,
   useUpdatePostMutation,
   useDeletePostMutation,
