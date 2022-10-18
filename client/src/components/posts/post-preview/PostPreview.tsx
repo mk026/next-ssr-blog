@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { Card, Typography } from "@mui/material";
+import { Button, Card, Typography } from "@mui/material";
 
 import { IPost } from "../../../models/IPost";
+import Link from "next/link";
 
 interface PostPreviewProps {
   post: IPost;
@@ -12,6 +13,9 @@ const PostPreview: FC<PostPreviewProps> = ({ post }) => {
     <Card>
       <Typography variant="h2">{post.title}</Typography>
       <Typography variant="body1">Post preview</Typography>
+      <Link href={`/posts/${post.id}`}>
+        <Button>Read more</Button>
+      </Link>
     </Card>
   );
 };
