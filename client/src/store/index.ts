@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 import { baseApi } from "../services/baseApi";
 
 import { authSlice } from "./slices/authSlice";
@@ -23,6 +24,6 @@ export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore["dispatch"];
 
-const store = setupStore();
+const wrapper = createWrapper(setupStore);
 
-export default store;
+export default wrapper;
