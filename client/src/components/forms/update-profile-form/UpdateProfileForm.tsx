@@ -7,8 +7,10 @@ import {
   UpdateProfileFormValues,
   updateProfileValidationSchema,
 } from "../../../validation/updateProfileValidation";
+import { useUpdateUserMutation } from "../../../services/userApi";
 
 const UpdateProfileForm: FC = () => {
+  const [updateUser] = useUpdateUserMutation();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ const UpdateProfileForm: FC = () => {
   });
 
   const updateProfileHandler = (values: UpdateProfileFormValues) => {
-    console.log(values);
+    updateUser(values);
   };
 
   return (
