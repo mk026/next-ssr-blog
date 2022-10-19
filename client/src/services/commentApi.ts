@@ -6,7 +6,7 @@ export const COMMENTS_URL = "/comments";
 
 export const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPostComments: builder.query<IComment[], string>({
+    getPostComments: builder.query<IComment[], number>({
       query: (postId) => ({ url: COMMENTS_URL, params: { postId } }),
     }),
     addPostComment: builder.mutation<IComment, CommentFormValues>({
