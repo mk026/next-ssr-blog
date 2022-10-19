@@ -1,11 +1,11 @@
 import { Container } from "@mui/material";
 import { FC, PropsWithChildren } from "react";
-import Navbar from "../navbar/Navbar";
+import Header from "../header/Header";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <Navbar />
+      <Header />
       <Container>{children}</Container>
     </>
   );
