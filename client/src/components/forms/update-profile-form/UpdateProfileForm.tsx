@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 import {
   UpdateProfileFormValues,
@@ -10,7 +10,7 @@ import {
 import { useUpdateUserMutation } from "../../../services/userApi";
 
 const UpdateProfileForm: FC = () => {
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
   const {
     register,
     handleSubmit,
@@ -39,7 +39,13 @@ const UpdateProfileForm: FC = () => {
         error={!!errors.email}
         helperText={errors.email?.message}
       />
-      <Button type="submit">Update profile</Button>
+      <Button
+        type="submit"
+        disabled={isLoading}
+        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
+      >
+        Update profile
+      </Button>
     </Box>
   );
 };
