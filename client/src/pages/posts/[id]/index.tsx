@@ -1,5 +1,7 @@
 import type { GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
+
+import FullPost from "../../../components/posts/full-post/FullPost";
 import { postApi, useGetPostQuery } from "../../../services/postApi";
 import wrapper, { setupStore } from "../../../store";
 
@@ -8,7 +10,7 @@ const Post: NextPage = () => {
   const postId = Number(router.query.id);
   const { data: post } = useGetPostQuery(postId);
 
-  return <div>Post page for {post?.title}</div>;
+  return <FullPost post={post} />;
 };
 
 export default Post;
