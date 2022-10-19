@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
@@ -8,9 +8,11 @@ import {
   signinValidationSchema,
 } from "../../../validation/signinValidation";
 import { useSigninMutation } from "../../../services/authApi";
+import { useRouter } from "next/router";
 
 const SigninForm: FC = () => {
-  const [signin, { isLoading }] = useSigninMutation();
+  const [signin, { isLoading, isSuccess }] = useSigninMutation();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,6 +25,12 @@ const SigninForm: FC = () => {
   const signinHandler = (values: SigninFormValues) => {
     signin(values);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/");
+    }
+  }, [isSuccess, router]);
 
   return (
     <Box onSubmit={handleSubmit(signinHandler)}>

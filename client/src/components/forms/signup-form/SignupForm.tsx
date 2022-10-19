@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 import {
@@ -10,7 +11,8 @@ import {
 import { useSignupMutation } from "../../../services/authApi";
 
 const SignupForm: FC = () => {
-  const [signup, { isLoading }] = useSignupMutation();
+  const [signup, { isLoading, isSuccess }] = useSignupMutation();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,6 +25,12 @@ const SignupForm: FC = () => {
   const signupHandler = (values: SignupFormValues) => {
     signup(values);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/");
+    }
+  }, [isSuccess, router]);
 
   return (
     <Box component="form" onSubmit={handleSubmit(signupHandler)}>
