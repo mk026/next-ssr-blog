@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import {
   UpdateProfileFormValues,
@@ -23,19 +23,22 @@ const UpdateProfileForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(updateProfileHandler)}>
-      <label>
-        Name
-        <input type="text" {...register("name")} />
-      </label>
-      {errors.name && <p>{errors.name.message}</p>}
-      <label>
-        Email
-        <input type="text" {...register("email")} />
-      </label>
-      {errors.email && <p>{errors.email.message}</p>}
+    <Box component="form" onSubmit={handleSubmit(updateProfileHandler)}>
+      <TextField
+        label="Name"
+        {...register("name")}
+        error={!!errors.name}
+        helperText={errors.name?.message}
+      />
+      <TextField
+        type="email"
+        label="Email"
+        {...register("email")}
+        error={!!errors.email}
+        helperText={errors.email?.message}
+      />
       <Button type="submit">Update profile</Button>
-    </form>
+    </Box>
   );
 };
 
