@@ -7,8 +7,10 @@ import {
   UpdatePasswordFormValues,
   updatePasswordValidationSchema,
 } from "../../../validation/updatePasswordValidation";
+import { useUpdatePasswordMutation } from "../../../services/userApi";
 
 const UpdatePasswordForm: FC = () => {
+  const [updatePassword] = useUpdatePasswordMutation();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,7 @@ const UpdatePasswordForm: FC = () => {
   });
 
   const updatePasswordHandler = (values: UpdatePasswordFormValues) => {
-    console.log(values);
+    updatePassword(values);
   };
 
   return (
