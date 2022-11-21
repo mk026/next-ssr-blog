@@ -3,6 +3,7 @@ import { UpdatePasswordFormValues } from "../validation/updatePasswordValidation
 import { baseApi, HttpMethod } from "./baseApi";
 
 export const USERS_URL = "/users";
+export const PASSWORD_UPDATE_URL = "/users/password";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -14,7 +15,7 @@ export const userApi = baseApi.injectEndpoints({
     }),
     updatePassword: builder.mutation<void, UpdatePasswordFormValues>({
       query: (body) => ({
-        url: `${USERS_URL}/update_password`,
+        url: PASSWORD_UPDATE_URL,
         method: HttpMethod.PATCH,
         body,
       }),
