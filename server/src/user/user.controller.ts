@@ -35,7 +35,7 @@ export class UserController {
     return this.userService.updateUser(userId, updateUserDto);
   }
 
-  @Put()
+  @Put('/password')
   @UseGuards(AuthGuard())
   updatePassword(
     @Body() updatePasswordDto: UpdatePasswordDto,
