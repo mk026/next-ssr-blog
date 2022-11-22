@@ -1,21 +1,16 @@
-import Link from "next/link";
 import { FC } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { Tab, Tabs } from "@mui/material";
 
 const Navbar: FC = () => {
+  const { pathname } = useRouter();
+
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/posts">Posts</Link>
-        </li>
-        <li>
-          <Link href="/profile">Profile</Link>
-        </li>
-      </ul>
-    </nav>
+    <Tabs component="nav" value={pathname}>
+      <Tab label="Rooms" value="/rooms" component={Link} href="/rooms" />
+      <Tab label="Profile" value="/profile" component={Link} href="/profile" />
+    </Tabs>
   );
 };
 
