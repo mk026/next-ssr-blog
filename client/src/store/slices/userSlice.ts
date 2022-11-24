@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IUser } from "../../models/IUser";
-import { authApi } from "../../services/authApi";
+import { authApi } from "../api/authApi";
 
 export interface UserState {
   user: IUser | null;

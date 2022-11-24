@@ -7,7 +7,7 @@ import {
   UpdatePasswordFormValues,
   updatePasswordValidationSchema,
 } from "../../../validation/updatePasswordValidation";
-import { useUpdatePasswordMutation } from "../../../services/userApi";
+import { useUpdatePasswordMutation } from "../../../store/api/userApi";
 
 const UpdatePasswordForm: FC = () => {
   const [updatePassword, { isLoading }] = useUpdatePasswordMutation();

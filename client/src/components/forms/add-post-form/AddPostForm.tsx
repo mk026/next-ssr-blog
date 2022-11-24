@@ -7,7 +7,7 @@ import {
   PostFormValues,
   postValidationSchema,
 } from "../../../validation/postValidation";
-import { useAddPostMutation } from "../../../services/postApi";
+import { useAddPostMutation } from "../../../store/api/postApi";
 
 const AddPostForm: FC = () => {
   const [addPost, { isLoading }] = useAddPostMutation();

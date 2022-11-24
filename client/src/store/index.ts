@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
-import { baseApi } from "../services/baseApi";
 
+import { baseApi } from "./api/baseApi";
 import { authSlice } from "./slices/authSlice";
 import { postsSlice } from "./slices/postsSlice";
 import { userSlice } from "./slices/userSlice";

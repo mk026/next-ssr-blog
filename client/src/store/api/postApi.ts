@@ -1,8 +1,8 @@
-import { IPost } from "../models/IPost";
-import { PostFormValues } from "../validation/postValidation";
+import { IPost } from "../../models/IPost";
+import { PostFormValues } from "../../validation/postValidation";
 import { baseApi, HttpMethod } from "./baseApi";
 
-export const POSTS_URL = "/posts";
+export const POSTS_URL = "/api/posts";
 
 export const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

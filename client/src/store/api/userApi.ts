@@ -1,5 +1,5 @@
-import { IUser } from "../models/IUser";
-import { UpdatePasswordFormValues } from "../validation/updatePasswordValidation";
+import { IUser } from "../../models/IUser";
+import { UpdatePasswordFormValues } from "../../validation/updatePasswordValidation";
 import { baseApi, HttpMethod } from "./baseApi";
 
 export const USERS_URL = "/users";

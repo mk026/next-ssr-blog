@@ -1,8 +1,8 @@
-import { IComment } from "../models/IComment";
-import { CommentFormValues } from "../validation/commentValidation";
+import { IComment } from "../../models/IComment";
+import { CommentFormValues } from "../../validation/commentValidation";
 import { baseApi, HttpMethod } from "./baseApi";
 
-export const COMMENTS_URL = "/comments";
+export const COMMENTS_URL = "/api/comments";
 
 export const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -7,7 +7,7 @@ import {
   SigninFormValues,
   signinValidationSchema,
 } from "../../../validation/signinValidation";
-import { useSigninMutation } from "../../../services/authApi";
+import { useSigninMutation } from "../../../store/api/authApi";
 import { useRouter } from "next/router";
 
 const SigninForm: FC = () => {

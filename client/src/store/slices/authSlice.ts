@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { authApi } from "../../services/authApi";
+import { authApi } from "../api/authApi";
 
 export interface AuthState {
   isAuth: boolean;

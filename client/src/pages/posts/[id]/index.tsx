@@ -1,13 +1,13 @@
 import type { GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
-import CommentsList from "../../../components/comments/comments-list/CommentsList";
 
+import CommentsList from "../../../components/comments/comments-list/CommentsList";
 import FullPost from "../../../components/posts/full-post/FullPost";
 import {
   commentApi,
   useGetPostCommentsQuery,
-} from "../../../services/commentApi";
-import { postApi, useGetPostQuery } from "../../../services/postApi";
+} from "../../../store/api/commentApi";
+import { postApi, useGetPostQuery } from "../../../store/api/postApi";
 import wrapper, { setupStore } from "../../../store";
 
 const Post: NextPage = () => {

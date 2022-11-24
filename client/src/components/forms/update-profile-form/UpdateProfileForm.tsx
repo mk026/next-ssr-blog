@@ -7,7 +7,7 @@ import {
   UpdateProfileFormValues,
   updateProfileValidationSchema,
 } from "../../../validation/updateProfileValidation";
-import { useUpdateUserMutation } from "../../../services/userApi";
+import { useUpdateUserMutation } from "../../../store/api/userApi";
 
 const UpdateProfileForm: FC = () => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();

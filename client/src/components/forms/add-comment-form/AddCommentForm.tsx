@@ -7,7 +7,7 @@ import {
   CommentFormValues,
   commentValidationSchema,
 } from "../../../validation/commentValidation";
-import { useAddPostCommentMutation } from "../../../services/commentApi";
+import { useAddPostCommentMutation } from "../../../store/api/commentApi";
 
 const AddCommentForm: FC = () => {
   const [addPostComment, { isLoading }] = useAddPostCommentMutation();

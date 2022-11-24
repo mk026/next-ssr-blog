@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button, Container, Typography } from "@mui/material";
 
 import PostsList from "../../components/posts/posts-list/PostsList";
-import { postApi, useGetPostsQuery } from "../../services/postApi";
+import { postApi, useGetPostsQuery } from "../../store/api/postApi";
 import wrapper from "../../store";
 
 const Posts: NextPage = () => {
