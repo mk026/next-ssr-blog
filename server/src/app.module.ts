@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import typeOrmConfig from './config/typeorm.config';
-import { validate } from './config/env.validation';
+import { validate } from './validation/env.validation';
 import { AuthModule } from './auth/auth.module';
 import { CommentModule } from './comment/comment.module';
 import { PostModule } from './post/post.module';
