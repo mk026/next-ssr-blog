@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -8,6 +9,7 @@ import {
 
 import { User } from '../user/user.entity';
 import { Comment } from '../comment/comment.entity';
+import { Tag } from '../tag/tag.entity';
 
 @Entity()
 export class Post {
@@ -25,4 +27,7 @@ export class Post {
 
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
+
+  @ManyToMany(() => Tag, (tag) => tag.posts)
+  tags: Tag[];
 }
