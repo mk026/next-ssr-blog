@@ -1,6 +1,7 @@
 import type { GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
 
+import AddCommentForm from "../../../components/forms/add-comment-form/AddCommentForm";
 import CommentsList from "../../../components/comments/comments-list/CommentsList";
 import FullPost from "../../../components/posts/full-post/FullPost";
 import {
@@ -19,6 +20,7 @@ const Post: NextPage = () => {
   return (
     <>
       <FullPost post={post} />
+      <AddCommentForm postId={postId} />
       <CommentsList comments={comments} />
     </>
   );
