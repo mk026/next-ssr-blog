@@ -7,7 +7,7 @@ import classes from "./AuthLinks.module.scss";
 const AuthLinks: FC = () => {
   return (
     <Stack direction="row" className={classes.links}>
-      <Button variant="outlined">
+      <Button variant="outlined" className={classes["signup-btn"]}>
         <Link href="/signup">Create Account</Link>
       </Button>
       <Button variant="contained">
