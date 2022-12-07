@@ -1,15 +1,16 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { Tab, Tabs } from "@mui/material";
+import { Tabs } from "@mui/material";
+
+import TabLink from "../tab-link/TabLink";
 
 const Navbar: FC = () => {
   const { pathname } = useRouter();
 
   return (
     <Tabs component="nav" value={pathname}>
-      <Tab label="Rooms" value="/rooms" component={Link} href="/rooms" />
-      <Tab label="Profile" value="/profile" component={Link} href="/profile" />
+      <TabLink value="/posts" label="Posts" href="/posts" />
+      <TabLink value="/profile" label="Profile" href="/profile" />
     </Tabs>
   );
 };
