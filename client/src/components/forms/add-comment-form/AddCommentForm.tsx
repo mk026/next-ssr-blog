@@ -9,7 +9,11 @@ import {
 } from "../../../validation/commentValidation";
 import { useAddPostCommentMutation } from "../../../store/api/commentApi";
 
-const AddCommentForm: FC = () => {
+interface AddCommentFormProps {
+  postId: number;
+}
+
+const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
   const [addPostComment, { isLoading }] = useAddPostCommentMutation();
   const {
     register,
@@ -21,7 +25,7 @@ const AddCommentForm: FC = () => {
   });
 
   const addCommentHandler = (values: CommentFormValues) => {
-    addPostComment(values);
+    addPostComment({ ...values, postId });
   };
 
   return (
