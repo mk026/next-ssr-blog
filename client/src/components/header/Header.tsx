@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "../navbar/Navbar";
 import { useAppSelector } from "../../hooks/redux";
 import { getAuthState } from "../../store/selectors/authSelectors";
+import AuthLinks from "../auth-links/AuthLinks";
 
 const Header: FC = () => {
   const { isAuth } = useAppSelector(getAuthState);
@@ -13,12 +14,7 @@ const Header: FC = () => {
     <Box component="header">
       <Stack direction="row">
         <Navbar />
-        {!isAuth && (
-          <Box>
-            <Link href="/signup">Create Account</Link>
-            <Link href="/signin">Signin</Link>
-          </Box>
-        )}
+        {!isAuth && <AuthLinks />}
         {isAuth && <Button>Signout</Button>}
       </Stack>
     </Box>
