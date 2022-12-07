@@ -1,13 +1,15 @@
 import { FC } from "react";
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import Link from "next/link";
+
+import classes from "./AuthLinks.module.scss";
 
 const AuthLinks: FC = () => {
   return (
-    <Box>
+    <Stack direction="row" className={classes.links}>
       <Link href="/signup">Create Account</Link>
       <Link href="/signin">Signin</Link>
-    </Box>
+    </Stack>
   );
 };
 
