@@ -3,11 +3,9 @@ import { createWrapper } from "next-redux-wrapper";
 
 import { baseApi } from "./api/baseApi";
 import { authSlice } from "./slices/authSlice";
-import { userSlice } from "./slices/userSlice";
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
-  user: userSlice.reducer,
   [baseApi.reducerPath]: baseApi.reducer,
 });
 
