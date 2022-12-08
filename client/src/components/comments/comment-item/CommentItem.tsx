@@ -1,4 +1,6 @@
+import { Card, Typography } from "@mui/material";
 import { FC } from "react";
+
 import { IComment } from "../../../models/IComment";
 
 interface CommentItemProps {
@@ -6,7 +8,12 @@ interface CommentItemProps {
 }
 
 const CommentItem: FC<CommentItemProps> = ({ comment }) => {
-  return <div>{comment.content}</div>;
+  return (
+    <Card>
+      <Typography>{comment.author.name}</Typography>
+      <Typography>{comment.content}</Typography>
+    </Card>
+  );
 };
 
 export default CommentItem;
