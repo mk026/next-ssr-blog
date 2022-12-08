@@ -18,7 +18,13 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    signout(state) {
+      state.isAuth = false;
+      state.user = null;
+      state.token = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addMatcher(
       authApi.endpoints.signin.matchFulfilled,
