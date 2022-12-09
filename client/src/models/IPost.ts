@@ -1,6 +1,8 @@
+import { IUser } from "./IUser";
+
 export interface IPost {
   id: number;
-  userId: number;
+  author: IUser;
   title: string;
   content: string;
 }
