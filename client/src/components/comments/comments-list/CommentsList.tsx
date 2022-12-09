@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { Typography } from "@mui/material";
+
 import { IComment } from "../../../models/IComment";
 import CommentItem from "../comment-item/CommentItem";
 
@@ -7,6 +9,10 @@ interface CommentsListProps {
 }
 
 const CommentsList: FC<CommentsListProps> = ({ comments = [] }) => {
+  if (comments.length === 0) {
+    return <Typography>No comments yet</Typography>;
+  }
+
   return (
     <ul>
       {comments.map((comment) => (
