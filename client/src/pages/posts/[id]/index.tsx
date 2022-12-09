@@ -1,14 +1,13 @@
 import type { GetStaticPaths, NextPage } from "next";
 import { useRouter } from "next/router";
 
-import AddCommentForm from "../../../components/forms/add-comment-form/AddCommentForm";
-import CommentsList from "../../../components/comments/comments-list/CommentsList";
-import FullPost from "../../../components/posts/full-post/FullPost";
 import {
   commentApi,
   useGetPostCommentsQuery,
 } from "../../../store/api/commentApi";
 import { postApi, useGetPostQuery } from "../../../store/api/postApi";
+import FullPost from "../../../components/posts/full-post/FullPost";
+import PostComments from "../../../components/posts/post-comments/PostComments";
 import wrapper, { setupStore } from "../../../store";
 
 const Post: NextPage = () => {
@@ -20,8 +19,7 @@ const Post: NextPage = () => {
   return (
     <>
       <FullPost post={post!} />
-      <AddCommentForm postId={postId} />
-      <CommentsList comments={comments} />
+      <PostComments postId={postId} comments={comments!} />
     </>
   );
 };
