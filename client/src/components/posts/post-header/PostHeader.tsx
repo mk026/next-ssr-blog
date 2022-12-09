@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Typography } from "@mui/material";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
 
 import { IPost } from "../../../models/IPost";
 
@@ -8,7 +8,15 @@ interface PostHeaderProps {
 }
 
 const PostHeader: FC<PostHeaderProps> = ({ post }) => {
-  return <Typography variant="h2">{post.title}</Typography>;
+  return (
+    <Stack direction="row">
+      <Typography variant="h2">{post.title}</Typography>
+      <Box>
+        <Typography>{post.author.name}</Typography>
+        <Avatar alt={post.author.name} src={post.author.avatarUrl} />
+      </Box>
+    </Stack>
+  );
 };
 
 export default PostHeader;
