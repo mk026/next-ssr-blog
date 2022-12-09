@@ -1,16 +1,17 @@
 import { Stack, Typography } from "@mui/material";
 import { FC } from "react";
 import { IPost } from "../../../models/IPost";
+import PostHeader from "../post-header/PostHeader";
 
 interface FullPostProps {
-  post?: IPost;
+  post: IPost;
 }
 
 const FullPost: FC<FullPostProps> = ({ post }) => {
   return (
     <Stack>
-      <Typography variant="h2">{post?.title}</Typography>
-      <Typography variant="body1">{post?.content}</Typography>
+      <PostHeader post={post} />
+      <Typography variant="body1">{post.content}</Typography>
     </Stack>
   );
 };

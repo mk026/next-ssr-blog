@@ -19,7 +19,7 @@ const Post: NextPage = () => {
 
   return (
     <>
-      <FullPost post={post} />
+      <FullPost post={post!} />
       <AddCommentForm postId={postId} />
       <CommentsList comments={comments} />
     </>
