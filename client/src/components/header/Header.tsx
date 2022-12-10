@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Box, Button, Stack } from "@mui/material";
-import Link from "next/link";
 
 import Navbar from "../navbar/Navbar";
 import { useAppSelector } from "../../hooks/redux";
@@ -8,6 +7,8 @@ import { getAuthState } from "../../store/selectors/authSelectors";
 import AuthLinks from "../auth-links/AuthLinks";
 import { useActions } from "../../hooks/useActions";
 import { authActions } from "../../store/slices/authSlice";
+
+import classes from "./Header.module.scss";
 
 const Header: FC = () => {
   const { isAuth } = useAppSelector(getAuthState);
@@ -20,7 +21,11 @@ const Header: FC = () => {
       <Stack direction="row">
         <Navbar />
         {!isAuth && <AuthLinks />}
-        {isAuth && <Button onClick={signoutHandler}>Signout</Button>}
+        {isAuth && (
+          <Button className={classes["signout-btn"]} onClick={signoutHandler}>
+            Signout
+          </Button>
+        )}
       </Stack>
     </Box>
   );
