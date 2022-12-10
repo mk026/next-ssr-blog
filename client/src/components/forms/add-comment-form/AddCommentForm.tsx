@@ -9,6 +9,8 @@ import {
 } from "../../../validation/commentValidation";
 import { useAddPostCommentMutation } from "../../../store/api/commentApi";
 
+import classes from "./AddCommentForm.module.scss";
+
 interface AddCommentFormProps {
   postId: number;
 }
@@ -29,7 +31,11 @@ const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(addCommentHandler)}>
+    <Box
+      className={classes.form}
+      component="form"
+      onSubmit={handleSubmit(addCommentHandler)}
+    >
       <TextField
         label="Add comment"
         {...register("content")}
