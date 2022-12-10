@@ -29,7 +29,7 @@ const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
   };
 
   return (
-    <Box onSubmit={handleSubmit(addCommentHandler)}>
+    <Box component="form" onSubmit={handleSubmit(addCommentHandler)}>
       <TextField
         label="Add comment"
         {...register("content")}
