@@ -9,6 +9,7 @@ import {
 
 import { User } from '../user/user.entity';
 import { Comment } from '../comment/comment.entity';
+import { Category } from '../category/category.entity';
 import { Tag } from '../tag/tag.entity';
 
 @Entity()
@@ -27,6 +28,9 @@ export class Post {
 
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
+
+  @ManyToOne(() => Category, (category) => category.posts)
+  category: Category;
 
   @ManyToMany(() => Tag, (tag) => tag.posts)
   tags: Tag[];
