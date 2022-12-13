@@ -10,6 +10,7 @@ import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
 import { TagModule } from './tag/tag.module';
 import { CategoryModule } from './category/category.module';
+import { BookmarkModule } from './bookmark/bookmark.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CategoryModule } from './category/category.module';
     CommentModule,
     TagModule,
     CategoryModule,
+    BookmarkModule,
   ],
 })
 export class AppModule {}
