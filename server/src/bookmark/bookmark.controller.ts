@@ -1,7 +1,9 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { GetUser } from '../auth/get-user.decorator';
 import { BookmarkService } from './bookmark.service';
+import { CreateBookmarkDto } from './dto/create-bookmark.dto';
 
 @Controller('bookmarks')
 @UseGuards(AuthGuard())
@@ -9,12 +11,15 @@ export class BookmarkController {
   constructor(private readonly bookmarkService: BookmarkService) {}
 
   @Get()
-  getBookmarks() {
-    return this.bookmarkService.getBookmarks();
+  getBookmarks(@GetUser() userId: number) {
+    return this.bookmarkService.getBookmarks(userId);
   }
 
   @Post()
-  addBookmark() {
-    return this.bookmarkService.addBookmark();
+  addBookmark(
+    @Body() createBookmarkDto: CreateBookmarkDto,
+    @GetUser() userId: number,
+  ) {
+    return this.bookmarkService.addBookmark(createBookmarkDto, userId);
   }
 }
