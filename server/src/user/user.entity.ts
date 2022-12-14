@@ -8,6 +8,7 @@ import {
 
 import { Comment } from '../comment/comment.entity';
 import { Post } from '../post/post.entity';
+import { Bookmark } from '../bookmark/bookmark.entity';
 
 @Entity()
 @Unique(['email'])
@@ -29,4 +30,7 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
+
+  @OneToMany(() => Bookmark, (bookmark) => bookmark.user)
+  bookmarks: Bookmark[];
 }
