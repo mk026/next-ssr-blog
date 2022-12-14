@@ -11,6 +11,7 @@ import { User } from '../user/user.entity';
 import { Comment } from '../comment/comment.entity';
 import { Category } from '../category/category.entity';
 import { Tag } from '../tag/tag.entity';
+import { Bookmark } from '../bookmark/bookmark.entity';
 
 @Entity()
 export class Post {
@@ -34,4 +35,7 @@ export class Post {
 
   @ManyToMany(() => Tag, (tag) => tag.posts)
   tags: Tag[];
+
+  @OneToMany(() => Bookmark, (bookmark) => bookmark.post)
+  bookmarks: Bookmark[];
 }
