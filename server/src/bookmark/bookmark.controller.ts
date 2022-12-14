@@ -1,8 +1,10 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { BookmarkService } from './bookmark.service';
 
 @Controller('bookmarks')
+@UseGuards(AuthGuard())
 export class BookmarkController {
   constructor(private readonly bookmarkService: BookmarkService) {}
 
