@@ -13,6 +13,11 @@ export class TagController {
     return this.tagService.getTags();
   }
 
+  @Get('popular')
+  getPopularTags() {
+    return this.tagService.getPopularTags();
+  }
+
   @Post()
   @UseGuards(AuthGuard())
   addTag(@Body() createTagDto: CreateTagDto) {

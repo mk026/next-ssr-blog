@@ -15,6 +15,10 @@ export class TagService {
     return 'Get tags';
   }
 
+  getPopularTags() {
+    return 'Get popular tags';
+  }
+
   addTag(createTagDto: CreateTagDto) {
     return `Create tag: ${createTagDto.title}`;
   }
