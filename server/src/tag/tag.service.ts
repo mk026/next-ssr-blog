@@ -12,7 +12,7 @@ export class TagService {
   ) {}
 
   getTags() {
-    return 'Get tags';
+    return this.tagRepository.find();
   }
 
   getPopularTags() {
