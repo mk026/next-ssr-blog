@@ -19,4 +19,8 @@ export class BookmarkService {
   addBookmark(createBookmarkDto: CreateBookmarkDto, userId: number) {
     return `Add bookmark for user with id ${userId} with post id ${createBookmarkDto.postId}`;
   }
+
+  deleteBookmark(id: number) {
+    return `Delete bookmarkwith id ${id}`;
+  }
 }

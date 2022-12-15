@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { GetUser } from '../auth/get-user.decorator';
@@ -21,5 +29,10 @@ export class BookmarkController {
     @GetUser() userId: number,
   ) {
     return this.bookmarkService.addBookmark(createBookmarkDto, userId);
+  }
+
+  @Delete(':id')
+  deleteBookmark(@Param('id') id: number) {
+    return this.bookmarkService.deleteBookmark(id);
   }
 }
