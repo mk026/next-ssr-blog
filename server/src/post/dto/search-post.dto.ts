@@ -1,21 +1,27 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsIn, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class SearchPostDto {
-  @IsNotEmpty()
+  @IsOptional()
+  @IsString()
   readonly title?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsString()
   readonly content?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsIn(['ASC', 'DESC'])
   readonly views?: 'ASC' | 'DESC';
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsNumber()
   readonly userId?: number;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsNumber()
   readonly offset?: number;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsNumber()
   readonly limit?: number;
 }
