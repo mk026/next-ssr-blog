@@ -29,6 +29,9 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
 
+  @Column({ default: 0 })
+  views: number;
+
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
 
