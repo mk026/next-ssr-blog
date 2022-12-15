@@ -23,6 +23,7 @@ export class PostService {
 
   async searchPosts(searchPostDto: SearchPostDto) {
     const qb = this.postRepository.createQueryBuilder('posts');
+
     if (searchPostDto.views) {
       qb.orderBy('views', searchPostDto.views);
     }
@@ -39,6 +40,10 @@ export class PostService {
     if (searchPostDto.content) {
       qb.setParameter('content', `%${searchPostDto.content}%`);
       qb.andWhere('posts.content ILIKE :content');
+    }
+    if (searchPostDto.userId) {
+      qb.setParameter('userId', `%${searchPostDto.userId}%`);
+      qb.andWhere('posts.userId = :userId');
     }
 
     const [items, count] = await qb.getManyAndCount();
