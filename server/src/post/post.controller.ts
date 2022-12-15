@@ -7,11 +7,14 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+
 import { GetUser } from '../auth/get-user.decorator';
 import { CreatePostDto } from './dto/create-post.dto';
+import { SearchPostDto } from './dto/search-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PostService } from './post.service';
 
@@ -32,6 +35,11 @@ export class PostController {
   @Get(':id')
   getPost(@Param('id', ParseIntPipe) id: number) {
     return this.postService.getPost(id);
+  }
+
+  @Get('search')
+  searchPosts(@Query() searchPostDto: SearchPostDto) {
+    return this.postService.searchPosts(searchPostDto);
   }
 
   @Post()

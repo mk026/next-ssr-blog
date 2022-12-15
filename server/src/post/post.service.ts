@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CreatePostDto } from './dto/create-post.dto';
+import { SearchPostDto } from './dto/search-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './post.entity';
 
@@ -18,6 +19,30 @@ export class PostService {
 
   getPopularPosts() {
     return this.postRepository.find({ order: { views: 'DESC' } });
+  }
+
+  async searchPosts(searchPostDto: SearchPostDto) {
+    const qb = this.postRepository.createQueryBuilder('posts');
+    if (searchPostDto.views) {
+      qb.orderBy('views', searchPostDto.views);
+    }
+    if (searchPostDto.offset) {
+      qb.skip(searchPostDto.offset);
+    }
+    if (searchPostDto.limit) {
+      qb.take(searchPostDto.limit);
+    }
+    if (searchPostDto.title) {
+      qb.setParameter('title', `%${searchPostDto.title}%`);
+      qb.andWhere('posts.title ILIKE :title');
+    }
+    if (searchPostDto.content) {
+      qb.setParameter('content', `%${searchPostDto.content}%`);
+      qb.andWhere('posts.content ILIKE :content');
+    }
+
+    const [items, count] = await qb.getManyAndCount();
+    return { items, count };
   }
 
   async getPost(id: number) {
