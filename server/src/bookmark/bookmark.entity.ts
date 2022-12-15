@@ -1,4 +1,9 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { User } from '../user/user.entity';
 import { Post } from '../post/post.entity';
@@ -13,4 +18,7 @@ export class Bookmark {
 
   @ManyToOne(() => Post, (post) => post.bookmarks)
   post: Post;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
 }
