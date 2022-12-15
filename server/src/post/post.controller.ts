@@ -24,6 +24,11 @@ export class PostController {
     return this.postService.getPosts();
   }
 
+  @Get('popular')
+  getPopularPosts() {
+    return this.postService.getPopularPosts();
+  }
+
   @Get(':id')
   getPost(@Param('id', ParseIntPipe) id: number) {
     return this.postService.getPost(id);

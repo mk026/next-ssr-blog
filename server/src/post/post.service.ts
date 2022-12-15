@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './post.entity';
@@ -13,6 +14,10 @@ export class PostService {
 
   getPosts() {
     return this.postRepository.find();
+  }
+
+  getPopularPosts() {
+    return this.postRepository.find({ order: { views: 'DESC' } });
   }
 
   async getPost(id: number) {
