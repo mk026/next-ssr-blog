@@ -1,7 +1,20 @@
-import React from "react";
+import { FC } from "react";
 
-const TagsList = () => {
-  return <div>TagsList</div>;
+import { ITag } from "../../../models/ITag";
+import TagItem from "../tag-item/TagItem";
+
+interface TagListProps {
+  tags: ITag[];
+}
+
+const TagsList: FC<TagListProps> = ({ tags }) => {
+  return (
+    <ul>
+      {tags.map((tag) => (
+        <TagItem key={tag.id} tag={tag} />
+      ))}
+    </ul>
+  );
 };
 
 export default TagsList;
