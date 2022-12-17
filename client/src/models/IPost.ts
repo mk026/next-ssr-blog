@@ -9,4 +9,5 @@ export interface IPost {
   content: string;
   category: ICategory;
   tags: ITag[];
+  views: number;
 }
