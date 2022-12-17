@@ -1,7 +1,13 @@
-import React from "react";
+import { FC } from "react";
 
-const TagItem = () => {
-  return <div>TagItem</div>;
+import { ITag } from "../../../models/ITag";
+
+interface TagItemProps {
+  tag: ITag;
+}
+
+const TagItem: FC<TagItemProps> = ({ tag }) => {
+  return <div>{tag.title}</div>;
 };
 
 export default TagItem;
