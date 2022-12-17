@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -32,7 +33,7 @@ export class BookmarkController {
   }
 
   @Delete(':id')
-  deleteBookmark(@Param('id') id: number) {
+  deleteBookmark(@Param('id', ParseIntPipe) id: number) {
     return this.bookmarkService.deleteBookmark(id);
   }
 }
