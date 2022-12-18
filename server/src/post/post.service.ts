@@ -21,6 +21,10 @@ export class PostService {
     return this.postRepository.find({ order: { views: 'DESC' } });
   }
 
+  getBookmarkedPosts(userId: number) {
+    return this.postRepository.findBy({ bookmarks: { user: { id: userId } } });
+  }
+
   async searchPosts(searchPostDto: SearchPostDto) {
     const qb = this.postRepository.createQueryBuilder('posts');
 

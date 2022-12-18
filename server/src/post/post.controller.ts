@@ -32,14 +32,20 @@ export class PostController {
     return this.postService.getPopularPosts();
   }
 
-  @Get(':id')
-  getPost(@Param('id', ParseIntPipe) id: number) {
-    return this.postService.getPost(id);
+  @Get('bookmarked')
+  @UseGuards(AuthGuard())
+  getBookmarkedPosts(@GetUser() userId: number) {
+    return this.postService.getBookmarkedPosts(userId);
   }
 
   @Get('search')
   searchPosts(@Query() searchPostDto: SearchPostDto) {
     return this.postService.searchPosts(searchPostDto);
+  }
+
+  @Get(':id')
+  getPost(@Param('id', ParseIntPipe) id: number) {
+    return this.postService.getPost(id);
   }
 
   @Post()
