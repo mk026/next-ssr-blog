@@ -1,14 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+
+import PostsList from "../../../components/posts/posts-list/PostsList";
 
 const Bookmarks: NextPage = () => {
   return (
     <>
       <Head>
-        <title>My Bookmarks</title>
+        <title>Bookmarks</title>
       </Head>
-      <Typography variant="h1">Bookmarks page</Typography>
+      <Container>
+        <Typography variant="h1">Bookmarks page</Typography>
+        <PostsList posts={[]} />
+      </Container>
     </>
   );
 };
