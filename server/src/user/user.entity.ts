@@ -4,7 +4,6 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -13,7 +12,6 @@ import { Post } from '../post/post.entity';
 import { Bookmark } from '../bookmark/bookmark.entity';
 
 @Entity()
-@Unique(['email'])
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,7 +19,7 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
