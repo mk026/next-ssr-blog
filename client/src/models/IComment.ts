@@ -5,4 +5,6 @@ export interface IComment {
   author: IUser;
   postId: number;
   content: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
