@@ -1,4 +1,4 @@
-import { IsNotEmpty, MaxLength, MinLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, MaxLength, MinLength } from 'class-validator';
 
 export class CreatePostDto {
   @IsNotEmpty()
@@ -11,6 +11,6 @@ export class CreatePostDto {
   @MaxLength(1000)
   readonly content: string;
 
-  @IsNotEmpty()
-  readonly category: string;
+  @IsNumber()
+  readonly categoryId: number;
 }
