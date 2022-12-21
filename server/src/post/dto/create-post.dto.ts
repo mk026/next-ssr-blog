@@ -10,4 +10,7 @@ export class CreatePostDto {
   @MinLength(1)
   @MaxLength(1000)
   readonly content: string;
+
+  @IsNotEmpty()
+  readonly category: string;
 }
