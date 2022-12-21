@@ -1,4 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { Post } from '../post/post.entity';
 
@@ -12,4 +18,7 @@ export class Category {
 
   @OneToMany(() => Post, (post) => post.category)
   posts: Post[];
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
 }

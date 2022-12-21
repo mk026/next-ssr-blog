@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
@@ -19,4 +20,7 @@ export class Tag {
   @ManyToMany(() => Post, (post) => post.tags)
   @JoinTable()
   posts: Post[];
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
 }
