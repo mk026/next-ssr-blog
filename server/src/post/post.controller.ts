@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { GetUser } from '../auth/get-user.decorator';
+import { AuthUser } from '../common/decorators/auth-user.decorator';
 import { CreatePostDto } from './dto/create-post.dto';
 import { SearchPostDto } from './dto/search-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -34,7 +34,7 @@ export class PostController {
 
   @Get('bookmarked')
   @UseGuards(AuthGuard())
-  getBookmarkedPosts(@GetUser() userId: number) {
+  getBookmarkedPosts(@AuthUser() userId: number) {
     return this.postService.getBookmarkedPosts(userId);
   }
 
@@ -50,7 +50,7 @@ export class PostController {
 
   @Post()
   @UseGuards(AuthGuard())
-  addPost(@Body() createPostDto: CreatePostDto, @GetUser() userId: number) {
+  addPost(@Body() createPostDto: CreatePostDto, @AuthUser() userId: number) {
     return this.postService.addPost(createPostDto, userId);
   }
 
@@ -59,14 +59,17 @@ export class PostController {
   updatePost(
     @Param('id', ParseIntPipe) id: number,
     @Body() updatePostDto: UpdatePostDto,
-    @GetUser() userId: number,
+    @AuthUser() userId: number,
   ) {
     return this.postService.updatePost(id, updatePostDto, userId);
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard())
-  deletePost(@Param('id', ParseIntPipe) id: number, @GetUser() userId: number) {
+  deletePost(
+    @Param('id', ParseIntPipe) id: number,
+    @AuthUser() userId: number,
+  ) {
     return this.postService.deletePost(id, userId);
   }
 }

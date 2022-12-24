@@ -11,7 +11,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from '../auth/get-user.decorator';
+
+import { AuthUser } from '../common/decorators/auth-user.decorator';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -29,7 +30,7 @@ export class CommentController {
   @UseGuards(AuthGuard())
   addComment(
     @Body() createCommentDto: CreateCommentDto,
-    @GetUser() userId: number,
+    @AuthUser() userId: number,
   ) {
     return this.commentService.addComment(createCommentDto, userId);
   }
@@ -39,7 +40,7 @@ export class CommentController {
   updateComment(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCommentDto: UpdateCommentDto,
-    @GetUser() userId: number,
+    @AuthUser() userId: number,
   ) {
     return this.commentService.updateComment(id, updateCommentDto, userId);
   }
@@ -48,7 +49,7 @@ export class CommentController {
   @UseGuards(AuthGuard())
   deleteComment(
     @Param('id', ParseIntPipe) id: number,
-    @GetUser() userId: number,
+    @AuthUser() userId: number,
   ) {
     return this.commentService.deleteComment(id, userId);
   }
