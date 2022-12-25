@@ -6,6 +6,7 @@ export interface IPost {
   id: number;
   author: IUser;
   title: string;
+  description: string;
   content: string;
   category: ICategory;
   tags: ITag[];
