@@ -8,7 +8,12 @@ export class CreatePostDto {
 
   @IsNotEmpty()
   @MinLength(1)
-  @MaxLength(1000)
+  @MaxLength(500)
+  readonly description: string;
+
+  @IsNotEmpty()
+  @MinLength(1)
+  @MaxLength(5000)
   readonly content: string;
 
   @IsNumber()
