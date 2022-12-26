@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Stack } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 
 import { IPost } from "../../../models/IPost";
 import PostContent from "../post-content/PostContent";
@@ -7,10 +7,14 @@ import PostHeader from "../post-header/PostHeader";
 import PostInfo from "../post-info/PostInfo";
 
 interface FullPostProps {
-  post: IPost;
+  post?: IPost;
 }
 
 const FullPost: FC<FullPostProps> = ({ post }) => {
+  if (!post) {
+    return <CircularProgress />;
+  }
+
   return (
     <Stack>
       <PostHeader post={post} />

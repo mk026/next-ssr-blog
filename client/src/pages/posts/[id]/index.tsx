@@ -18,8 +18,8 @@ const Post: NextPage = () => {
 
   return (
     <>
-      <FullPost post={post!} />
-      <PostComments postId={postId} comments={comments!} />
+      <FullPost post={post} />
+      <PostComments postId={postId} comments={comments} />
     </>
   );
 };
