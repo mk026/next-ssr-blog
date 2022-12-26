@@ -15,7 +15,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post }) => {
         <Typography>{post.author.name}</Typography>
         <Avatar alt={post.author.name} src={post.author.avatarUrl} />
       </Box>
-      <Typography>{post.createdAt.toLocaleDateString()}</Typography>
+      <Typography>{new Date(post.createdAt).toLocaleString()}</Typography>
     </Stack>
   );
 };

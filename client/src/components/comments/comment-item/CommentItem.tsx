@@ -19,7 +19,7 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
           {comment.author.name}
         </Link>
       </Typography>
-      <Typography>{comment.createdAt.toLocaleDateString()}</Typography>
+      <Typography>{new Date(comment.createdAt).toLocaleString()}</Typography>
       <Typography>{comment.content}</Typography>
     </Card>
   );
