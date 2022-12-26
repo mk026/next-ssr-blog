@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 
 import {
   SigninFormValues,
@@ -9,15 +9,12 @@ import {
 } from "../../../validation/signinValidation";
 import { useSigninMutation } from "../../../store/api/authApi";
 import { useRouter } from "next/router";
+import FormField from "../../form-field/FormField";
 
 const SigninForm: FC = () => {
   const [signin, { isLoading, isSuccess }] = useSigninMutation();
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SigninFormValues>({
+  const methods = useForm<SigninFormValues>({
     mode: "onBlur",
     resolver: yupResolver(signinValidationSchema),
   });
@@ -33,29 +30,21 @@ const SigninForm: FC = () => {
   }, [isSuccess, router]);
 
   return (
-    <Box component="form" onSubmit={handleSubmit(signinHandler)}>
-      <TextField
-        type="email"
-        label="Email"
-        {...register("email")}
-        error={!!errors.email}
-        helperText={errors.email?.message}
-      />
-      <TextField
-        type="password"
-        label="Password"
-        {...register("password")}
-        error={!!errors.password}
-        helperText={errors.password?.message}
-      />
-      <Button
-        type="submit"
-        disabled={isLoading}
-        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
-      >
-        Signin
-      </Button>
-    </Box>
+    <FormProvider {...methods}>
+      <Box component="form" onSubmit={methods.handleSubmit(signinHandler)}>
+        <FormField name="email" label="Email" type="email" />
+        <FormField name="password" label="Password" type="password" />
+        <Button
+          type="submit"
+          disabled={isLoading}
+          endIcon={
+            isLoading && <CircularProgress size="1rem" color="inherit" />
+          }
+        >
+          Signin
+        </Button>
+      </Box>
+    </FormProvider>
   );
 };
 
