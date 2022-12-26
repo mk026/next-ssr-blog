@@ -12,9 +12,9 @@ const PostPreview: FC<PostPreviewProps> = ({ post }) => {
   return (
     <Card>
       <Typography variant="h2">{post.title}</Typography>
-      <Typography variant="body1">Post preview</Typography>
-      <Link href={`/posts/${post.id}`}>
-        <Button>Read more</Button>
+      <Typography variant="body1">{post.description}</Typography>
+      <Link href={`/posts/${post.id}`} passHref>
+        <Button component="a">Read more</Button>
       </Link>
     </Card>
   );
