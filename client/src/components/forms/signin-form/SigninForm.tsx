@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 import {
   SigninFormValues,
@@ -10,6 +10,7 @@ import {
 import { useSigninMutation } from "../../../store/api/authApi";
 import { useRouter } from "next/router";
 import FormField from "../../form-field/FormField";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 const SigninForm: FC = () => {
   const [signin, { isLoading, isSuccess }] = useSigninMutation();
@@ -34,15 +35,7 @@ const SigninForm: FC = () => {
       <Box component="form" onSubmit={methods.handleSubmit(signinHandler)}>
         <FormField name="email" label="Email" type="email" />
         <FormField name="password" label="Password" type="password" />
-        <Button
-          type="submit"
-          disabled={isLoading}
-          endIcon={
-            isLoading && <CircularProgress size="1rem" color="inherit" />
-          }
-        >
-          Signin
-        </Button>
+        <LoadingButton isLoading={isLoading}>Signin</LoadingButton>
       </Box>
     </FormProvider>
   );

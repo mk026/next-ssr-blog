@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 import {
   SignupFormValues,
@@ -10,6 +10,7 @@ import {
 } from "../../../validation/signupValidation";
 import { useSignupMutation } from "../../../store/api/authApi";
 import FormField from "../../form-field/FormField";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 const SignupForm: FC = () => {
   const [signup, { isLoading, isSuccess }] = useSignupMutation();
@@ -40,15 +41,7 @@ const SignupForm: FC = () => {
           label="Confirm password"
           type="password"
         />
-        <Button
-          type="submit"
-          disabled={isLoading}
-          endIcon={
-            isLoading && <CircularProgress size="1rem" color="inherit" />
-          }
-        >
-          Signup
-        </Button>
+        <LoadingButton isLoading={isLoading}>Signup</LoadingButton>
       </Box>
     </FormProvider>
   );
