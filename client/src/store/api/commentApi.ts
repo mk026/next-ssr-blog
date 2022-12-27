@@ -8,6 +8,10 @@ export interface AddCommentDto {
   content: string;
 }
 
+export interface UpdateCommentDto {
+  content: string;
+}
+
 export const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPostComments: builder.query<IComment[], number>({
@@ -16,7 +20,7 @@ export const commentApi = baseApi.injectEndpoints({
     addPostComment: builder.mutation<IComment, AddCommentDto>({
       query: (body) => ({ url: COMMENTS_URL, method: HttpMethod.POST, body }),
     }),
-    updatePostComment: builder.mutation<IComment, Partial<IComment>>({
+    updatePostComment: builder.mutation<IComment, UpdateCommentDto>({
       query: (body) => ({ url: COMMENTS_URL, method: HttpMethod.PUT, body }),
     }),
     deletePostComment: builder.mutation<void, string>({
