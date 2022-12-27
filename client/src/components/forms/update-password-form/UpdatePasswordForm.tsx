@@ -1,21 +1,19 @@
 import { FC } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 import {
   UpdatePasswordFormValues,
   updatePasswordValidationSchema,
 } from "../../../validation/updatePasswordValidation";
 import { useUpdatePasswordMutation } from "../../../store/api/userApi";
+import FormField from "../../form-field/FormField";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 const UpdatePasswordForm: FC = () => {
   const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UpdatePasswordFormValues>({
+  const methods = useForm<UpdatePasswordFormValues>({
     mode: "onBlur",
     resolver: yupResolver(updatePasswordValidationSchema),
   });
@@ -25,36 +23,17 @@ const UpdatePasswordForm: FC = () => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(updatePasswordHandler)}>
-      <TextField
-        type="password"
-        label="Old password"
-        {...register("oldPassword")}
-        error={!!errors.oldPassword}
-        helperText={errors.oldPassword?.message}
-      />
-      <TextField
-        type="password"
-        label="New password"
-        {...register("password")}
-        error={!!errors.password}
-        helperText={errors.password?.message}
-      />
-      <TextField
-        type="password"
-        label="Confirm password"
-        {...register("confirmPassword")}
-        error={!!errors.confirmPassword}
-        helperText={errors.confirmPassword?.message}
-      />
-      <Button
-        type="submit"
-        disabled={isLoading}
-        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
+    <FormProvider {...methods}>
+      <Box
+        component="form"
+        onSubmit={methods.handleSubmit(updatePasswordHandler)}
       >
-        Update password
-      </Button>
-    </Box>
+        <FormField label="Old password" name="oldPassword" />
+        <FormField label="New password" name="password" />
+        <FormField label="Confirm password" name="confirmPassword" />
+        <LoadingButton isLoading={isLoading}>Update password</LoadingButton>
+      </Box>
+    </FormProvider>
   );
 };
 
