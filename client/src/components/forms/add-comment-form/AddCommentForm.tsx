@@ -1,13 +1,15 @@
 import { FC } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 import {
   CommentFormValues,
   commentValidationSchema,
 } from "../../../validation/commentValidation";
 import { useAddPostCommentMutation } from "../../../store/api/commentApi";
+import FormField from "../../form-field/FormField";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 import classes from "./AddCommentForm.module.scss";
 
@@ -17,11 +19,7 @@ interface AddCommentFormProps {
 
 const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
   const [addPostComment, { isLoading }] = useAddPostCommentMutation();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CommentFormValues>({
+  const methods = useForm<CommentFormValues>({
     mode: "onBlur",
     resolver: yupResolver(commentValidationSchema),
   });
@@ -31,25 +29,16 @@ const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
   };
 
   return (
-    <Box
-      className={classes.form}
-      component="form"
-      onSubmit={handleSubmit(addCommentHandler)}
-    >
-      <TextField
-        label="Add comment"
-        {...register("content")}
-        error={!!errors.content}
-        helperText={errors.content?.message}
-      />
-      <Button
-        type="submit"
-        disabled={isLoading}
-        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
+    <FormProvider {...methods}>
+      <Box
+        className={classes.form}
+        component="form"
+        onSubmit={methods.handleSubmit(addCommentHandler)}
       >
-        Add comment
-      </Button>
-    </Box>
+        <FormField label="Add comment" name="content" />
+        <LoadingButton isLoading={isLoading}>Add comment</LoadingButton>
+      </Box>
+    </FormProvider>
   );
 };
 

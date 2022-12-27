@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 import {
   PostFormValues,
@@ -9,14 +9,12 @@ import {
 } from "../../../validation/postValidation";
 import { useAddPostMutation } from "../../../store/api/postApi";
 import { useRouter } from "next/router";
+import FormField from "../../form-field/FormField";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 const AddPostForm: FC = () => {
   const [addPost, { isLoading, isSuccess, data }] = useAddPostMutation();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<PostFormValues>({
+  const methods = useForm<PostFormValues>({
     mode: "onBlur",
     resolver: yupResolver(postValidationSchema),
   });
@@ -33,27 +31,13 @@ const AddPostForm: FC = () => {
   }, [isSuccess, data, router]);
 
   return (
-    <Box component="form" onSubmit={handleSubmit(addPostHandler)}>
-      <TextField
-        label="Title"
-        {...register("title")}
-        error={!!errors.title}
-        helperText={errors.title?.message}
-      />
-      <TextField
-        label="Content"
-        {...register("content")}
-        error={!!errors.content}
-        helperText={errors.content?.message}
-      />
-      <Button
-        type="submit"
-        disabled={isLoading}
-        endIcon={isLoading && <CircularProgress size="1rem" color="inherit" />}
-      >
-        Add post
-      </Button>
-    </Box>
+    <FormProvider {...methods}>
+      <Box component="form" onSubmit={methods.handleSubmit(addPostHandler)}>
+        <FormField label="Title" name="title" />
+        <FormField label="Content" name="content" />
+        <LoadingButton isLoading={isLoading}>Add post</LoadingButton>
+      </Box>
+    </FormProvider>
   );
 };
 
