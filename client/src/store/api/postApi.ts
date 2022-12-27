@@ -1,8 +1,16 @@
-import { IPost } from "../../models/IPost";
-import { PostFormValues } from "../../validation/postValidation";
 import { baseApi, HttpMethod } from "./baseApi";
+import { IPost } from "../../models/IPost";
 
 export const POSTS_URL = "/api/posts";
+
+export interface AddPostDto {
+  title: string;
+  description: string;
+  content: string;
+  categoryId: number;
+}
+
+export interface UpdatePostDto extends Partial<AddPostDto> {}
 
 export const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,10 +18,10 @@ export const postApi = baseApi.injectEndpoints({
     getPost: builder.query<IPost, number>({
       query: (id) => `${POSTS_URL}/${id}`,
     }),
-    addPost: builder.mutation<IPost, PostFormValues>({
+    addPost: builder.mutation<IPost, AddPostDto>({
       query: (body) => ({ url: POSTS_URL, method: HttpMethod.POST, body }),
     }),
-    updatePost: builder.mutation<IPost, Partial<IPost>>({
+    updatePost: builder.mutation<IPost, UpdatePostDto>({
       query: (body) => ({ url: POSTS_URL, method: HttpMethod.PUT, body }),
     }),
     deletePost: builder.mutation<void, string>({
