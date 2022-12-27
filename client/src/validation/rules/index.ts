@@ -14,9 +14,13 @@ export const postRules = {
     min: 1,
     max: 100,
   },
+  description: {
+    min: 1,
+    max: 500,
+  },
   content: {
     min: 1,
-    max: 1000,
+    max: 5000,
   },
 };
 
