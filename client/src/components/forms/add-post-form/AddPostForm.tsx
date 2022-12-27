@@ -34,7 +34,9 @@ const AddPostForm: FC = () => {
     <FormProvider {...methods}>
       <Box component="form" onSubmit={methods.handleSubmit(addPostHandler)}>
         <FormField label="Title" name="title" />
+        <FormField label="Description" name="description" />
         <FormField label="Content" name="content" />
+        <FormField label="Category" name="category" />
         <LoadingButton isLoading={isLoading}>Add post</LoadingButton>
       </Box>
     </FormProvider>
