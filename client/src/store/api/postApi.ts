@@ -2,6 +2,7 @@ import { baseApi, HttpMethod } from "./baseApi";
 import { IPost } from "../../models/IPost";
 
 export const POSTS_URL = "/api/posts";
+export const POPULAR_POSTS_URL = "/api/posts/popular";
 
 export interface AddPostDto {
   title: string;
@@ -15,6 +16,9 @@ export interface UpdatePostDto extends Partial<AddPostDto> {}
 export const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPosts: builder.query<IPost[], void>({ query: () => POSTS_URL }),
+    getPopularPosts: builder.query<IPost[], void>({
+      query: () => POPULAR_POSTS_URL,
+    }),
     getPost: builder.query<IPost, number>({
       query: (id) => `${POSTS_URL}/${id}`,
     }),
@@ -32,6 +36,7 @@ export const postApi = baseApi.injectEndpoints({
 
 export const {
   useGetPostsQuery,
+  useGetPopularPostsQuery,
   useGetPostQuery,
   useAddPostMutation,
   useUpdatePostMutation,
