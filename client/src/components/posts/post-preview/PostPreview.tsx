@@ -11,7 +11,11 @@ interface PostPreviewProps {
 const PostPreview: FC<PostPreviewProps> = ({ post }) => {
   return (
     <Card>
-      <Typography variant="h2">{post.title}</Typography>
+      <Link href={`/posts/${post.id}`} passHref>
+        <Typography component="a" variant="h2">
+          {post.title}
+        </Typography>
+      </Link>
       <Typography variant="body1">{post.description}</Typography>
       <Link href={`/posts/${post.id}`} passHref>
         <Button component="a">Read more</Button>
