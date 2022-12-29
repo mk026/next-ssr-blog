@@ -8,8 +8,8 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthUser } from '../common/decorators/auth-user.decorator';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -30,13 +30,13 @@ export class UserController {
   }
 
   @Put()
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   updateUser(@Body() updateUserDto: UpdateUserDto, @AuthUser() userId: number) {
     return this.userService.updateUser(userId, updateUserDto);
   }
 
   @Put('/password')
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   updatePassword(
     @Body() updatePasswordDto: UpdatePasswordDto,
     @AuthUser() userId: number,
@@ -45,7 +45,7 @@ export class UserController {
   }
 
   @Delete()
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   deleteUser(@AuthUser() userId: number) {
     return this.userService.deleteUser(userId);
   }

@@ -10,8 +10,8 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthUser } from '../common/decorators/auth-user.decorator';
 import { CreatePostDto } from './dto/create-post.dto';
 import { SearchPostDto } from './dto/search-post.dto';
@@ -33,7 +33,7 @@ export class PostController {
   }
 
   @Get('bookmarked')
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   getBookmarkedPosts(@AuthUser() userId: number) {
     return this.postService.getBookmarkedPosts(userId);
   }
@@ -49,13 +49,13 @@ export class PostController {
   }
 
   @Post()
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   addPost(@Body() createPostDto: CreatePostDto, @AuthUser() userId: number) {
     return this.postService.addPost(createPostDto, userId);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   updatePost(
     @Param('id', ParseIntPipe) id: number,
     @Body() updatePostDto: UpdatePostDto,
@@ -65,7 +65,7 @@ export class PostController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   deletePost(
     @Param('id', ParseIntPipe) id: number,
     @AuthUser() userId: number,

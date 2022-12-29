@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { CreateTagDto } from './dto/create-tag.dto';
 
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CreateTagDto } from './dto/create-tag.dto';
 import { TagService } from './tag.service';
 
 @Controller('tags')
@@ -19,7 +19,7 @@ export class TagController {
   }
 
   @Post()
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   addTag(@Body() createTagDto: CreateTagDto) {
     return this.tagService.addTag(createTagDto);
   }

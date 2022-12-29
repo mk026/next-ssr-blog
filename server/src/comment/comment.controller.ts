@@ -10,8 +10,8 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthUser } from '../common/decorators/auth-user.decorator';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -27,7 +27,7 @@ export class CommentController {
   }
 
   @Post()
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   addComment(
     @Body() createCommentDto: CreateCommentDto,
     @AuthUser() userId: number,
@@ -36,7 +36,7 @@ export class CommentController {
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   updateComment(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCommentDto: UpdateCommentDto,
@@ -46,7 +46,7 @@ export class CommentController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   deleteComment(
     @Param('id', ParseIntPipe) id: number,
     @AuthUser() userId: number,
