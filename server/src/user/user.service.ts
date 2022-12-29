@@ -1,7 +1,5 @@
 import {
   ConflictException,
-  forwardRef,
-  Inject,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -12,16 +10,14 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { SignupCredentialsDto } from '../auth/dto/signup-credentials.dto';
-import { AuthService } from '../auth/auth.service';
 import { UpdatePasswordDto } from './dto/update-password.dto';
+import { Hash } from '../common/utils/hash.util';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    @Inject(forwardRef(() => AuthService))
-    private readonly authService: AuthService,
   ) {}
 
   getUsers() {
@@ -47,9 +43,7 @@ export class UserService {
     if (foundUser) {
       throw new ConflictException('Email already in use');
     }
-    const passwordHash = this.authService.hashPassword(
-      signupCredentialsDto.password,
-    );
+    const passwordHash = Hash.generateHash(signupCredentialsDto.password);
     const user = this.userRepository.create({
       ...signupCredentialsDto,
       password: passwordHash,
@@ -71,14 +65,11 @@ export class UserService {
       throw new NotFoundException(`User with id ${id} not found`);
     }
     const { oldPassword, newPassword } = updatePasswordDto;
-    const isPasswordValid = this.authService.verifyPassword(
-      oldPassword,
-      user.password,
-    );
+    const isPasswordValid = Hash.compare(oldPassword, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    const newPasswordHash = this.authService.hashPassword(newPassword);
+    const newPasswordHash = Hash.generateHash(newPassword);
     user.password = newPasswordHash;
     await this.userRepository.save(user);
   }
