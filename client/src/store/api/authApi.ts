@@ -1,9 +1,18 @@
 import { IUser } from "../../models/IUser";
-import { SigninFormValues } from "../../validation/signinValidation";
-import { SignupFormValues } from "../../validation/signupValidation";
 import { baseApi, HttpMethod } from "./baseApi";
 
-interface AuthResponse {
+export interface SignupDto {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface SigninDto {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
   user: IUser;
   token: string;
 }
@@ -13,10 +22,10 @@ export const SIGNIN_URL = "/api/signin";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    signup: builder.mutation<AuthResponse, SignupFormValues>({
+    signup: builder.mutation<AuthResponse, SignupDto>({
       query: (body) => ({ url: SIGNUP_URL, method: HttpMethod.POST, body }),
     }),
-    signin: builder.mutation<AuthResponse, SigninFormValues>({
+    signin: builder.mutation<AuthResponse, SigninDto>({
       query: (body) => ({ url: SIGNIN_URL, method: HttpMethod.POST, body }),
     }),
   }),
