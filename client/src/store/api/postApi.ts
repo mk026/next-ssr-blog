@@ -3,12 +3,21 @@ import { IPost } from "../../models/IPost";
 
 export const POSTS_URL = "/api/posts";
 export const POPULAR_POSTS_URL = "/api/posts/popular";
+export const SEARCH_POSTS_URL = "/api/posts/search";
 
 export interface AddPostDto {
   title: string;
   description: string;
   content: string;
   categoryId: number;
+}
+
+export interface SearchPostsDto {
+  title?: string;
+  description?: string;
+  content?: string;
+  authorId?: number;
+  categoryId?: number;
 }
 
 export interface UpdatePostDto extends Partial<AddPostDto> {}
@@ -21,6 +30,13 @@ export const postApi = baseApi.injectEndpoints({
     }),
     getPost: builder.query<IPost, number>({
       query: (id) => `${POSTS_URL}/${id}`,
+    }),
+    searchPosts: builder.query<IPost[], SearchPostsDto>({
+      query: (params) => ({
+        url: SEARCH_POSTS_URL,
+        method: HttpMethod.GET,
+        params,
+      }),
     }),
     addPost: builder.mutation<IPost, AddPostDto>({
       query: (body) => ({ url: POSTS_URL, method: HttpMethod.POST, body }),
