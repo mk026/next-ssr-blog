@@ -3,6 +3,7 @@ import { baseApi, HttpMethod } from "./baseApi";
 
 export interface SignupDto {
   name: string;
+  bio?: string;
   email: string;
   password: string;
 }
