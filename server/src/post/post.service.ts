@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CreatePostDto } from './dto/create-post.dto';
+import { GetPostsDto } from './dto/get-posts.dto';
 import { SearchPostDto } from './dto/search-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './post.entity';
@@ -13,16 +14,28 @@ export class PostService {
     @InjectRepository(Post) private readonly postRepository: Repository<Post>,
   ) {}
 
-  getPosts() {
-    return this.postRepository.find({ order: { createdAt: 'DESC' } });
+  getPosts(getPostsDto: GetPostsDto) {
+    return this.postRepository.find({
+      order: { createdAt: 'DESC' },
+      skip: getPostsDto.skip,
+      take: getPostsDto.take,
+    });
   }
 
-  getPopularPosts() {
-    return this.postRepository.find({ order: { views: 'DESC' } });
+  getPopularPosts(getPostsDto: GetPostsDto) {
+    return this.postRepository.find({
+      order: { views: 'DESC' },
+      skip: getPostsDto.skip,
+      take: getPostsDto.take,
+    });
   }
 
-  getBookmarkedPosts(userId: number) {
-    return this.postRepository.findBy({ bookmarks: { user: { id: userId } } });
+  getBookmarkedPosts(getPostsDto: GetPostsDto, userId: number) {
+    return this.postRepository.find({
+      where: { bookmarks: { user: { id: userId } } },
+      skip: getPostsDto.skip,
+      take: getPostsDto.take,
+    });
   }
 
   async searchPosts(searchPostDto: SearchPostDto) {
