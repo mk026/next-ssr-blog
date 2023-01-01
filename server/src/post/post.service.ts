@@ -38,17 +38,28 @@ export class PostService {
       qb.take(searchPostDto.limit);
     }
     if (searchPostDto.title) {
-      qb.setParameter('title', `%${searchPostDto.title}%`);
-      qb.andWhere('posts.title ILIKE :title');
+      qb.andWhere('posts.title ILIKE :title', {
+        title: `%${searchPostDto.title}%`,
+      });
     }
     if (searchPostDto.content) {
-      qb.setParameter('content', `%${searchPostDto.content}%`);
-      qb.andWhere('posts.content ILIKE :content');
+      qb.andWhere('posts.content ILIKE :content', {
+        content: `%${searchPostDto.content}%`,
+      });
     }
     if (searchPostDto.userId) {
-      qb.setParameter('userId', `%${searchPostDto.userId}%`);
-      qb.andWhere('posts.userId = :userId');
+      qb.andWhere('posts.userId = :userId', {
+        userId: searchPostDto.userId,
+      });
     }
+    if (searchPostDto.categoryId) {
+      qb.andWhere('posts.categoryId = :categoryId', {
+        categoryId: searchPostDto.categoryId,
+      });
+    }
+
+    qb.leftJoinAndSelect('posts.user', 'user');
+    qb.leftJoinAndSelect('posts.category', 'category');
 
     const [items, count] = await qb.getManyAndCount();
     return { items, count };
@@ -64,8 +75,11 @@ export class PostService {
 
   async addPost(createPostDto: CreatePostDto, userId: number) {
     const post = this.postRepository.create({
-      ...createPostDto,
+      title: createPostDto.title,
+      description: createPostDto.description,
+      content: createPostDto.content,
       user: { id: userId },
+      category: { id: createPostDto.categoryId },
     });
     await this.postRepository.save(post);
   }
