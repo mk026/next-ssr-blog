@@ -31,11 +31,11 @@ export class PostService {
     if (searchPostDto.views) {
       qb.orderBy('views', searchPostDto.views);
     }
-    if (searchPostDto.offset) {
-      qb.skip(searchPostDto.offset);
+    if (searchPostDto.skip) {
+      qb.skip(searchPostDto.skip);
     }
-    if (searchPostDto.limit) {
-      qb.take(searchPostDto.limit);
+    if (searchPostDto.take) {
+      qb.take(searchPostDto.take);
     }
     if (searchPostDto.title) {
       qb.andWhere('posts.title ILIKE :title', {

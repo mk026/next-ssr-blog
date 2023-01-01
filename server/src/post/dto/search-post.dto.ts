@@ -1,7 +1,9 @@
 import { Type } from 'class-transformer';
 import { IsIn, IsInt, IsOptional, IsString } from 'class-validator';
 
-export class SearchPostDto {
+import { PaginationDto } from '../../common/dto/pagination.dto';
+
+export class SearchPostDto extends PaginationDto {
   @IsOptional()
   @IsString()
   readonly title?: string;
@@ -23,12 +25,4 @@ export class SearchPostDto {
   @IsInt()
   @Type(() => Number)
   readonly categoryId?: number;
-
-  @IsOptional()
-  @IsInt()
-  readonly offset?: number;
-
-  @IsOptional()
-  @IsInt()
-  readonly limit?: number;
 }
