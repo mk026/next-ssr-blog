@@ -1,4 +1,5 @@
-import { IsIn, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsIn, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class SearchPostDto {
   @IsOptional()
@@ -14,14 +15,20 @@ export class SearchPostDto {
   readonly views?: 'ASC' | 'DESC';
 
   @IsOptional()
-  @IsNumber()
+  @IsInt()
+  @Type(() => Number)
   readonly userId?: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsInt()
+  @Type(() => Number)
+  readonly categoryId?: number;
+
+  @IsOptional()
+  @IsInt()
   readonly offset?: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsInt()
   readonly limit?: number;
 }
