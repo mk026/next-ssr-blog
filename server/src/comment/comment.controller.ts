@@ -15,6 +15,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthUser } from '../common/decorators/auth-user.decorator';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
+import { GetCommentsDto } from './dto/get-comments.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 
 @Controller('comments')
@@ -22,8 +23,8 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Get()
-  getComments(@Query('postId', ParseIntPipe) postId: number) {
-    return this.commentService.getComments(postId);
+  getComments(@Query() getCommentsDto: GetCommentsDto) {
+    return this.commentService.getComments(getCommentsDto);
   }
 
   @Post()
