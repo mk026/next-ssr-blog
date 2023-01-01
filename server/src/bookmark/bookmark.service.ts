@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -13,14 +13,24 @@ export class BookmarkService {
   ) {}
 
   getBookmarks(userId: number) {
-    return `Get bookmarks for user with id ${userId}`;
+    return this.bookmarkRepository.findBy({ user: { id: userId } });
   }
 
-  addBookmark(createBookmarkDto: CreateBookmarkDto, userId: number) {
-    return `Add bookmark for user with id ${userId} with post id ${createBookmarkDto.postId}`;
+  async addBookmark(createBookmarkDto: CreateBookmarkDto, userId: number) {
+    const bookmark = this.bookmarkRepository.create({
+      post: { id: createBookmarkDto.postId },
+      user: { id: userId },
+    });
+    await this.bookmarkRepository.save(bookmark);
   }
 
-  deleteBookmark(id: number) {
-    return `Delete bookmarkwith id ${id}`;
+  async deleteBookmark(id: number, userId: number) {
+    const result = await this.bookmarkRepository.delete({
+      id,
+      user: { id: userId },
+    });
+    if (result.affected === 0) {
+      throw new NotFoundException(`Bookmark with id ${id} not found`);
+    }
   }
 }

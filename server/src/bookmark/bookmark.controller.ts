@@ -33,7 +33,10 @@ export class BookmarkController {
   }
 
   @Delete(':id')
-  deleteBookmark(@Param('id', ParseIntPipe) id: number) {
-    return this.bookmarkService.deleteBookmark(id);
+  deleteBookmark(
+    @Param('id', ParseIntPipe) id: number,
+    @AuthUser() userId: number,
+  ) {
+    return this.bookmarkService.deleteBookmark(id, userId);
   }
 }

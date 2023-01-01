@@ -13,10 +13,11 @@ export class CategoryService {
   ) {}
 
   getCategories() {
-    return 'Get categories';
+    return this.categoryRepository.find();
   }
 
   addCategory(createCategoryDto: CreateCategoryDto) {
-    return `Add category: ${createCategoryDto.title}`;
+    const category = this.categoryRepository.create(createCategoryDto);
+    return this.categoryRepository.save(category);
   }
 }
