@@ -17,6 +17,9 @@ export class CommentService {
   async getComments(getCommentsDto: GetCommentsDto) {
     const comments = await this.commentRepository.find({
       where: { post: { id: getCommentsDto.postId } },
+      skip: getCommentsDto.skip,
+      take: getCommentsDto.take,
+      relations: { user: true },
     });
     return comments;
   }
