@@ -1,9 +1,14 @@
-import { IsNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsInt, IsOptional } from 'class-validator';
 
 export class PaginationDto {
-  @IsNotEmpty()
-  readonly skip: number;
+  @IsOptional()
+  @IsInt()
+  @Type(() => Number)
+  readonly skip?: number;
 
-  @IsNotEmpty()
-  readonly take: number;
+  @IsOptional()
+  @IsInt()
+  @Type(() => Number)
+  readonly take?: number;
 }
