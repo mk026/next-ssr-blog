@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useRouter } from "next/router";
 import { Tabs } from "@mui/material";
 
-import TabLink from "../tab-link/TabLink";
+import TabLink from "../common/tab-link/TabLink";
 
 const Navbar: FC = () => {
   const { pathname } = useRouter();

@@ -9,8 +9,8 @@ import {
 } from "../../../validation/signinValidation";
 import { useSigninMutation } from "../../../store/api/authApi";
 import { useRouter } from "next/router";
-import FormField from "../../form-field/FormField";
-import LoadingButton from "../../loading-button/LoadingButton";
+import FormField from "../../common/form-field/FormField";
+import LoadingButton from "../../common/loading-button/LoadingButton";
 
 const SigninForm: FC = () => {
   const [signin, { isLoading, isSuccess }] = useSigninMutation();

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Box, Button } from "@mui/material";
 
-import FormField from "../../form-field/FormField";
+import FormField from "../../common/form-field/FormField";
 
 export interface SearchPostFormValues {
   query: string;

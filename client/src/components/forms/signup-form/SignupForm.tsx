@@ -9,8 +9,8 @@ import {
   signupValidationSchema,
 } from "../../../validation/signupValidation";
 import { useSignupMutation } from "../../../store/api/authApi";
-import FormField from "../../form-field/FormField";
-import LoadingButton from "../../loading-button/LoadingButton";
+import FormField from "../../common/form-field/FormField";
+import LoadingButton from "../../common/loading-button/LoadingButton";
 
 const SignupForm: FC = () => {
   const [signup, { isLoading, isSuccess }] = useSignupMutation();

@@ -9,8 +9,8 @@ import {
 } from "../../../validation/postValidation";
 import { useAddPostMutation } from "../../../store/api/postApi";
 import { useRouter } from "next/router";
-import FormField from "../../form-field/FormField";
-import LoadingButton from "../../loading-button/LoadingButton";
+import FormField from "../../common/form-field/FormField";
+import LoadingButton from "../../common/loading-button/LoadingButton";
 
 const AddPostForm: FC = () => {
   const [addPost, { isLoading, isSuccess, data }] = useAddPostMutation();

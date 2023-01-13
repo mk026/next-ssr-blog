@@ -8,8 +8,8 @@ import {
   commentValidationSchema,
 } from "../../../validation/commentValidation";
 import { useAddPostCommentMutation } from "../../../store/api/commentApi";
-import FormField from "../../form-field/FormField";
-import LoadingButton from "../../loading-button/LoadingButton";
+import FormField from "../../common/form-field/FormField";
+import LoadingButton from "../../common/loading-button/LoadingButton";
 
 import classes from "./AddCommentForm.module.scss";
 

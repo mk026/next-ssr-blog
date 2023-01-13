@@ -8,8 +8,8 @@ import {
   updatePasswordValidationSchema,
 } from "../../../validation/updatePasswordValidation";
 import { useUpdatePasswordMutation } from "../../../store/api/userApi";
-import FormField from "../../form-field/FormField";
-import LoadingButton from "../../loading-button/LoadingButton";
+import FormField from "../../common/form-field/FormField";
+import LoadingButton from "../../common/loading-button/LoadingButton";
 
 const UpdatePasswordForm: FC = () => {
   const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
