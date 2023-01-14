@@ -1,11 +1,10 @@
 import { baseApi } from "./baseApi";
-
-export const TAG_URL = "/api/tags";
+import { config } from "../../config";
 
 export const tagApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getTags: builder.query<any, void>({
-      query: () => TAG_URL,
+      query: () => config.tagsUrl,
     }),
   }),
 });

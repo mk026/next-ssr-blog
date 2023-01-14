@@ -1,9 +1,6 @@
 import { baseApi, HttpMethod } from "./baseApi";
 import { IPost } from "../../models/IPost";
-
-export const POSTS_URL = "/api/posts";
-export const POPULAR_POSTS_URL = "/api/posts/popular";
-export const SEARCH_POSTS_URL = "/api/posts/search";
+import { config } from "../../config";
 
 export interface AddPostDto {
   title: string;
@@ -24,28 +21,35 @@ export interface UpdatePostDto extends Partial<AddPostDto> {}
 
 export const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPosts: builder.query<IPost[], void>({ query: () => POSTS_URL }),
+    getPosts: builder.query<IPost[], void>({ query: () => config.postsUrl }),
     getPopularPosts: builder.query<IPost[], void>({
-      query: () => POPULAR_POSTS_URL,
+      query: () => config.popularPostsUrl,
     }),
     getPost: builder.query<IPost, number>({
-      query: (id) => `${POSTS_URL}/${id}`,
+      query: (id) => `${config.postsUrl}/${id}`,
     }),
     searchPosts: builder.query<IPost[], SearchPostsDto>({
       query: (params) => ({
-        url: SEARCH_POSTS_URL,
+        url: config.searchPostsUrl,
         method: HttpMethod.GET,
         params,
       }),
     }),
     addPost: builder.mutation<IPost, AddPostDto>({
-      query: (body) => ({ url: POSTS_URL, method: HttpMethod.POST, body }),
+      query: (body) => ({
+        url: config.postsUrl,
+        method: HttpMethod.POST,
+        body,
+      }),
     }),
     updatePost: builder.mutation<IPost, UpdatePostDto>({
-      query: (body) => ({ url: POSTS_URL, method: HttpMethod.PUT, body }),
+      query: (body) => ({ url: config.postsUrl, method: HttpMethod.PUT, body }),
     }),
     deletePost: builder.mutation<void, string>({
-      query: (id) => ({ url: `${POSTS_URL}/${id}`, method: HttpMethod.DELETE }),
+      query: (id) => ({
+        url: `${config.postsUrl}/${id}`,
+        method: HttpMethod.DELETE,
+      }),
     }),
   }),
 });

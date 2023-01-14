@@ -1,7 +1,6 @@
-import { IComment } from "../../models/IComment";
 import { baseApi, HttpMethod } from "./baseApi";
-
-export const COMMENTS_URL = "/api/comments";
+import { IComment } from "../../models/IComment";
+import { config } from "../../config";
 
 export interface AddCommentDto {
   postId: number;
@@ -15,17 +14,25 @@ export interface UpdateCommentDto {
 export const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getPostComments: builder.query<IComment[], number>({
-      query: (postId) => ({ url: COMMENTS_URL, params: { postId } }),
+      query: (postId) => ({ url: config.commentsUrl, params: { postId } }),
     }),
     addPostComment: builder.mutation<IComment, AddCommentDto>({
-      query: (body) => ({ url: COMMENTS_URL, method: HttpMethod.POST, body }),
+      query: (body) => ({
+        url: config.commentsUrl,
+        method: HttpMethod.POST,
+        body,
+      }),
     }),
     updatePostComment: builder.mutation<IComment, UpdateCommentDto>({
-      query: (body) => ({ url: COMMENTS_URL, method: HttpMethod.PUT, body }),
+      query: (body) => ({
+        url: config.commentsUrl,
+        method: HttpMethod.PUT,
+        body,
+      }),
     }),
     deletePostComment: builder.mutation<void, string>({
       query: (id) => ({
-        url: `${COMMENTS_URL}/${id}`,
+        url: `${config.commentsUrl}/${id}`,
         method: HttpMethod.DELETE,
       }),
     }),

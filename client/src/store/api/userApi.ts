@@ -1,8 +1,6 @@
-import { IUser } from "../../models/IUser";
 import { baseApi, HttpMethod } from "./baseApi";
-
-export const USERS_URL = "/users";
-export const PASSWORD_UPDATE_URL = "/users/password";
+import { IUser } from "../../models/IUser";
+import { config } from "../../config";
 
 export interface UpdateUserDto {
   name?: string;
@@ -19,20 +17,23 @@ export interface UpdatePasswordDto {
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query<IUser, string>({
-      query: (id) => ({ url: `${USERS_URL}/${id}` }),
+      query: (id) => ({ url: `${config.usersUrl}/${id}` }),
     }),
     updateUser: builder.mutation<IUser, UpdateUserDto>({
-      query: (body) => ({ url: USERS_URL, method: HttpMethod.PUT, body }),
+      query: (body) => ({ url: config.usersUrl, method: HttpMethod.PUT, body }),
     }),
     updatePassword: builder.mutation<void, UpdatePasswordDto>({
       query: (body) => ({
-        url: PASSWORD_UPDATE_URL,
+        url: config.passwordUpdateUrl,
         method: HttpMethod.PATCH,
         body,
       }),
     }),
     deleteUser: builder.mutation<void, string>({
-      query: (id) => ({ url: `${USERS_URL}/${id}`, method: HttpMethod.DELETE }),
+      query: (id) => ({
+        url: `${config.usersUrl}/${id}`,
+        method: HttpMethod.DELETE,
+      }),
     }),
   }),
 });

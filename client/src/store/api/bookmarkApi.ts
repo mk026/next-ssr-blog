@@ -1,6 +1,5 @@
 import { baseApi, HttpMethod } from "./baseApi";
-
-export const BOOKMARKS_URL = "/api/bookmarks";
+import { config } from "../../config";
 
 export interface AddBookmarkDto {
   postId: number;
@@ -9,14 +8,18 @@ export interface AddBookmarkDto {
 export const bookmarkApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getBookmarks: builder.query<any, void>({
-      query: () => BOOKMARKS_URL,
+      query: () => config.bookmarksUrl,
     }),
     addBookmark: builder.mutation<any, AddBookmarkDto>({
-      query: (body) => ({ url: BOOKMARKS_URL, method: HttpMethod.POST, body }),
+      query: (body) => ({
+        url: config.bookmarksUrl,
+        method: HttpMethod.POST,
+        body,
+      }),
     }),
     removeBookmark: builder.mutation<any, number>({
       query: (id) => ({
-        url: `${BOOKMARKS_URL}/${id}`,
+        url: `${config.bookmarksUrl}/${id}`,
         method: HttpMethod.DELETE,
       }),
     }),

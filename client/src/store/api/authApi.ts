@@ -1,5 +1,6 @@
-import { IUser } from "../../models/IUser";
 import { baseApi, HttpMethod } from "./baseApi";
+import { IUser } from "../../models/IUser";
+import { config } from "../../config";
 
 export interface SignupDto {
   name: string;
@@ -18,16 +19,21 @@ export interface AuthResponse {
   token: string;
 }
 
-export const SIGNUP_URL = "/api/signup";
-export const SIGNIN_URL = "/api/signin";
-
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signup: builder.mutation<AuthResponse, SignupDto>({
-      query: (body) => ({ url: SIGNUP_URL, method: HttpMethod.POST, body }),
+      query: (body) => ({
+        url: config.signupUrl,
+        method: HttpMethod.POST,
+        body,
+      }),
     }),
     signin: builder.mutation<AuthResponse, SigninDto>({
-      query: (body) => ({ url: SIGNIN_URL, method: HttpMethod.POST, body }),
+      query: (body) => ({
+        url: config.signinUrl,
+        method: HttpMethod.POST,
+        body,
+      }),
     }),
   }),
 });
