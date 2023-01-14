@@ -1,15 +1,16 @@
 import { baseApi } from "./baseApi";
+import { ITag } from "../../models/ITag";
 import { config } from "../../config";
 
 export const tagApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getTags: builder.query<any, void>({
+    getTags: builder.query<ITag[], void>({
       query: () => config.tagsUrl,
     }),
-    getPopularTags: builder.query<any, void>({
+    getPopularTags: builder.query<ITag[], void>({
       query: () => config.popularTagsUrl,
     }),
   }),
 });
 
-export const { useGetTagsQuery } = tagApi;
+export const { useGetTagsQuery, useGetPopularTagsQuery } = tagApi;
