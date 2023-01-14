@@ -6,6 +6,9 @@ export const tagApi = baseApi.injectEndpoints({
     getTags: builder.query<any, void>({
       query: () => config.tagsUrl,
     }),
+    getPopularTags: builder.query<any, void>({
+      query: () => config.popularTagsUrl,
+    }),
   }),
 });
 

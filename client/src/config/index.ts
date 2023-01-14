@@ -11,4 +11,5 @@ export const config = {
   bookmarksUrl: process.env.NEXT_PUBLIC_API_BOOKMARKS_URL!,
   categoriesUrl: process.env.NEXT_PUBLIC_API_CATEGORIES_URL!,
   tagsUrl: process.env.NEXT_PUBLIC_API_TAGS_URL!,
+  popularTagsUrl: process.env.NEXT_PUBLIC_API_POPULAR_TAGS_URL!,
 };
