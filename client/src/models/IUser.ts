@@ -4,6 +4,6 @@ export interface IUser {
   bio: string;
   email: string;
   avatarUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }

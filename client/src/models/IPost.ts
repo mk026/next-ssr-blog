@@ -11,6 +11,6 @@ export interface IPost {
   category: ICategory;
   tags: ITag[];
   views: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
