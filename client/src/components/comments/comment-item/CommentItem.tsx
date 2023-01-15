@@ -1,8 +1,10 @@
 import { FC } from "react";
-import { Avatar, Card, Typography } from "@mui/material";
+import { Avatar, Button, Card, Typography } from "@mui/material";
 import Link from "next/link";
 
 import { IComment } from "../../../models/IComment";
+import { useAppSelector } from "../../../hooks/redux";
+import { getAuthState } from "../../../store/selectors/authSelectors";
 
 import classes from "./CommentItem.module.scss";
 
@@ -11,6 +13,10 @@ interface CommentItemProps {
 }
 
 const CommentItem: FC<CommentItemProps> = ({ comment }) => {
+  const { user } = useAppSelector(getAuthState);
+
+  const isAuthor = user?.id === comment.author.id;
+
   return (
     <Card className={classes.comment}>
       <Avatar alt={comment.author.name} src={comment.author.avatarUrl} />
@@ -19,6 +25,7 @@ const CommentItem: FC<CommentItemProps> = ({ comment }) => {
           {comment.author.name}
         </Link>
       </Typography>
+      {isAuthor && <Button>Edit</Button>}
       <Typography>{new Date(comment.createdAt).toLocaleString()}</Typography>
       <Typography>{comment.content}</Typography>
     </Card>
