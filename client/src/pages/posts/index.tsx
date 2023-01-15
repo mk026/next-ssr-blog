@@ -4,10 +4,12 @@ import Link from "next/link";
 import { Button, Container, Typography } from "@mui/material";
 
 import PostsList from "../../components/posts/posts-list/PostsList";
-import { postApi, useGetPostsQuery } from "../../store/api/postApi";
-import wrapper from "../../store";
 import PostCategories from "../../components/posts/post-categories/PostCategories";
+import PopularTags from "../../components/tags/popular-tags/PopularTags";
+import wrapper from "../../store";
+import { postApi, useGetPostsQuery } from "../../store/api/postApi";
 import { categoryApi } from "../../store/api/categoryApi";
+import { tagApi } from "../../store/api/tagApi";
 
 const Posts: NextPage = () => {
   const { data: posts = [] } = useGetPostsQuery();
@@ -23,6 +25,7 @@ const Posts: NextPage = () => {
           <Button>Add new post</Button>
         </Link>
         <PostCategories />
+        <PopularTags />
         <PostsList posts={posts} />
       </Container>
     </>
@@ -34,7 +37,9 @@ export default Posts;
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   store.dispatch(postApi.endpoints.getPosts.initiate());
   store.dispatch(categoryApi.endpoints.getCategories.initiate());
+  store.dispatch(tagApi.endpoints.getPopularTags.initiate());
   await Promise.all(postApi.util.getRunningOperationPromises());
   await Promise.all(categoryApi.util.getRunningOperationPromises());
+  await Promise.all(tagApi.util.getRunningOperationPromises());
   return { props: {} };
 });
