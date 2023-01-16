@@ -8,8 +8,8 @@ import {
   updateProfileValidationSchema,
 } from "../../../validation/updateProfileValidation";
 import { useUpdateUserMutation } from "../../../store/api/userApi";
-import FormField from "../../common/form-field/FormField";
-import LoadingButton from "../../common/loading-button/LoadingButton";
+import FormField from "../../common/form-field";
+import LoadingButton from "../../common/loading-button";
 
 const UpdateProfileForm: FC = () => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
