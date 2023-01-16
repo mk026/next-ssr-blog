@@ -3,7 +3,7 @@ import { CircularProgress } from "@mui/material";
 
 import { IComment } from "../../../models/IComment";
 import CommentsList from "../../comments/comments-list";
-import AddCommentForm from "../../forms/add-comment-form/AddCommentForm";
+import AddCommentForm from "../../forms/add-comment-form";
 
 interface PostCommentsProps {
   postId: number;

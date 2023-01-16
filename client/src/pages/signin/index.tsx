@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
-import SigninForm from "../../components/forms/signin-form/SigninForm";
+import SigninForm from "../../components/forms/signin-form";
 
 const Signin: NextPage = () => {
   return (

@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
-import AddPostForm from "../../../components/forms/add-post-form/AddPostForm";
+import AddPostForm from "../../../components/forms/add-post-form";
 
 const AddPost: NextPage = () => {
   return (
