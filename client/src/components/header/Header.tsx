@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Box, Button, Stack } from "@mui/material";
 
-import Navbar from "../navbar/Navbar";
+import Navbar from "../navbar";
 import { useAppSelector } from "../../hooks/redux";
 import { getAuthState } from "../../store/selectors/authSelectors";
-import AuthLinks from "../auth-links/AuthLinks";
+import AuthLinks from "../auth-links";
 import { useActions } from "../../hooks/useActions";
 import { authActions } from "../../store/slices/authSlice";
 
