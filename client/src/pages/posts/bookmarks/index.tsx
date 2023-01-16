@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
-import PostsList from "../../../components/posts/posts-list/PostsList";
+import PostsList from "../../../components/posts/posts-list";
 
 const Bookmarks: NextPage = () => {
   return (

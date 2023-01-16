@@ -3,8 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { Button, Container, Typography } from "@mui/material";
 
-import PostsList from "../../components/posts/posts-list/PostsList";
-import PostCategories from "../../components/posts/post-categories/PostCategories";
+import PostsList from "../../components/posts/posts-list";
+import PostCategories from "../../components/posts/post-categories";
 import PopularTags from "../../components/tags/popular-tags/PopularTags";
 import wrapper from "../../store";
 import { postApi, useGetPostsQuery } from "../../store/api/postApi";

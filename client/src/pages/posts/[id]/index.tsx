@@ -6,8 +6,8 @@ import {
   useGetPostCommentsQuery,
 } from "../../../store/api/commentApi";
 import { postApi, useGetPostQuery } from "../../../store/api/postApi";
-import FullPost from "../../../components/posts/full-post/FullPost";
-import PostComments from "../../../components/posts/post-comments/PostComments";
+import FullPost from "../../../components/posts/full-post";
+import PostComments from "../../../components/posts/post-comments";
 import wrapper, { setupStore } from "../../../store";
 
 const Post: NextPage = () => {

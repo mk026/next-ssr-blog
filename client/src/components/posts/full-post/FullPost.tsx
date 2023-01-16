@@ -2,9 +2,9 @@ import { FC } from "react";
 import { CircularProgress, Stack } from "@mui/material";
 
 import { IPost } from "../../../models/IPost";
-import PostContent from "../post-content/PostContent";
-import PostHeader from "../post-header/PostHeader";
-import PostInfo from "../post-info/PostInfo";
+import PostContent from "../post-content";
+import PostHeader from "../post-header";
+import PostInfo from "../post-info";
 
 interface FullPostProps {
   post?: IPost;

@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { FC } from "react";
 
 import { IPost } from "../../../models/IPost";
-import PostPreview from "../post-preview/PostPreview";
+import PostPreview from "../post-preview";
 
 interface PostsListProps {
   posts: IPost[];
