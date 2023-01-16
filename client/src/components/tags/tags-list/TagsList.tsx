@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { ITag } from "../../../models/ITag";
-import TagItem from "../tag-item/TagItem";
+import TagItem from "../tag-item";
 
 interface TagListProps {
   tags: ITag[];

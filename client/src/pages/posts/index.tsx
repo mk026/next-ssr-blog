@@ -5,7 +5,7 @@ import { Button, Container, Typography } from "@mui/material";
 
 import PostsList from "../../components/posts/posts-list";
 import PostCategories from "../../components/posts/post-categories";
-import PopularTags from "../../components/tags/popular-tags/PopularTags";
+import PopularTags from "../../components/tags/popular-tags";
 import wrapper from "../../store";
 import { postApi, useGetPostsQuery } from "../../store/api/postApi";
 import { categoryApi } from "../../store/api/categoryApi";
