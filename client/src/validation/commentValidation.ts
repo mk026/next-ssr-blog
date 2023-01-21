@@ -2,9 +2,8 @@ import * as yup from "yup";
 
 import { commentRules } from "./rules";
 
-export interface CommentFormValues {
-  content: string;
-}
+export interface CommentFormValues
+  extends yup.InferType<typeof commentValidationSchema> {}
 
 export const commentValidationSchema = yup.object({
   content: yup

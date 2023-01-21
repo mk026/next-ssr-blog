@@ -2,12 +2,8 @@ import * as yup from "yup";
 
 import { postRules } from "./rules";
 
-export interface PostFormValues {
-  title: string;
-  description: string;
-  content: string;
-  categoryId: number;
-}
+export interface PostFormValues
+  extends yup.InferType<typeof postValidationSchema> {}
 
 export const postValidationSchema = yup.object({
   title: yup
