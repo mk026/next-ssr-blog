@@ -2,8 +2,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Typography } from "@mui/material";
 
-import { useGetUserQuery } from "../../../store/api/userApi";
+import { useGetUserQuery, userApi } from "../../../store/api/userApi";
 import { useRouter } from "next/router";
+import wrapper from "../../../store";
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -22,3 +23,15 @@ const Profile: NextPage = () => {
 };
 
 export default Profile;
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ params }) => {
+      const userId = params?.id as string;
+      if (userId) {
+        store.dispatch(userApi.endpoints.getUser.initiate(userId));
+      }
+      await Promise.all(userApi.util.getRunningOperationPromises());
+      return { props: {} };
+    }
+);
