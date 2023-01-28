@@ -17,7 +17,7 @@ const Header: FC = () => {
   const signoutHandler = () => signout();
 
   return (
-    <Box component="header">
+    <Box component="header" data-testid="header">
       <Stack direction="row">
         <Navbar />
         {!isAuth && <AuthLinks />}
