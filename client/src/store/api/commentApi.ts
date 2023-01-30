@@ -1,5 +1,5 @@
 import { baseApi, HttpMethod } from "./baseApi";
-import { IComment } from "../../models/IComment";
+import { IComment } from "../../models/comment";
 import { config } from "../../config";
 
 export interface AddCommentDto {

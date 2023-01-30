@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { CircularProgress, Stack } from "@mui/material";
 
-import { IPost } from "../../../models/IPost";
+import { IPost } from "../../../models/post";
 import PostContent from "../post-content";
 import PostHeader from "../post-header";
 import PostInfo from "../post-info";

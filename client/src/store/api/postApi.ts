@@ -1,5 +1,5 @@
 import { baseApi, HttpMethod } from "./baseApi";
-import { IPost } from "../../models/IPost";
+import { IPost } from "../../models/post";
 import { config } from "../../config";
 
 export interface AddPostDto {

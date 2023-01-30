@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { FC } from "react";
 
-import { ITag } from "../../../models/ITag";
+import { ITag } from "../../../models/tag";
 
 interface TagItemProps {
   tag: ITag;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Button, Card, Typography } from "@mui/material";
 
-import { IPost } from "../../../models/IPost";
+import { IPost } from "../../../models/post";
 import Link from "next/link";
 
 interface PostPreviewProps {

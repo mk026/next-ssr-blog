@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 
 import FullPost from ".";
-import { ICategory } from "../../../models/ICategory";
-import { IPost } from "../../../models/IPost";
-import { IUser } from "../../../models/IUser";
+import { ICategory } from "../../../models/category";
+import { IPost } from "../../../models/post";
+import { IUser } from "../../../models/user";
 
 it("Should render FullPost", () => {
   const fakeAuthor: IUser = {

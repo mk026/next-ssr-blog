@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Avatar, Button, Card, Typography } from "@mui/material";
 import Link from "next/link";
 
-import { IComment } from "../../../models/IComment";
+import { IComment } from "../../../models/comment";
 import { useAppSelector } from "../../../hooks/redux";
 import { getAuthState } from "../../../store/selectors/authSelectors";
 

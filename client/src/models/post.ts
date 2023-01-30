@@ -1,6 +1,6 @@
-import { IUser } from "./IUser";
-import { ICategory } from "./ICategory";
-import { ITag } from "./ITag";
+import { IUser } from "./user";
+import { ICategory } from "./category";
+import { ITag } from "./tag";
 
 export interface IPost {
   id: number;

@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import CommentItem from ".";
-import { IComment } from "../../../models/IComment";
-import { IUser } from "../../../models/IUser";
+import { IComment } from "../../../models/comment";
+import { IUser } from "../../../models/user";
 import { setupStore } from "../../../store";
 
 it("Should render CommentItem", () => {

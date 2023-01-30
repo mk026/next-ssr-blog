@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-import { ICategory } from "../../models/ICategory";
+import { ICategory } from "../../models/category";
 import { config } from "../../config";
 
 export const categoryApi = baseApi.injectEndpoints({

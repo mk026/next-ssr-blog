@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Typography } from "@mui/material";
 
-import { IComment } from "../../../models/IComment";
+import { IComment } from "../../../models/comment";
 import CommentItem from "../comment-item";
 
 interface CommentsListProps {

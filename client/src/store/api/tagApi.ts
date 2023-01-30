@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-import { ITag } from "../../models/ITag";
+import { ITag } from "../../models/tag";
 import { config } from "../../config";
 
 export const tagApi = baseApi.injectEndpoints({

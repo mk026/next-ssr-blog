@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 
-import { IPost } from "../../../models/IPost";
+import { IPost } from "../../../models/post";
 
 interface PostHeaderProps {
   post: IPost;
