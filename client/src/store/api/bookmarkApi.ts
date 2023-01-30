@@ -1,9 +1,6 @@
 import { baseApi, HttpMethod } from "./baseApi";
+import { AddBookmarkDto } from "../../models/bookmark";
 import { config } from "../../config";
-
-export interface AddBookmarkDto {
-  postId: number;
-}
 
 export const bookmarkApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -8,3 +8,12 @@ export interface IComment {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface AddCommentDto {
+  postId: number;
+  content: string;
+}
+
+export interface UpdateCommentDto {
+  content: string;
+}

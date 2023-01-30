@@ -1,23 +1,11 @@
 import { baseApi, HttpMethod } from "./baseApi";
-import { IPost } from "../../models/post";
 import { config } from "../../config";
-
-export interface AddPostDto {
-  title: string;
-  description: string;
-  content: string;
-  categoryId: number;
-}
-
-export interface SearchPostsDto {
-  title?: string;
-  description?: string;
-  content?: string;
-  authorId?: number;
-  categoryId?: number;
-}
-
-export interface UpdatePostDto extends Partial<AddPostDto> {}
+import {
+  AddPostDto,
+  IPost,
+  SearchPostsDto,
+  UpdatePostDto,
+} from "../../models/post";
 
 export const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -1,18 +1,6 @@
 import { baseApi, HttpMethod } from "./baseApi";
-import { IUser } from "../../models/user";
 import { config } from "../../config";
-
-export interface UpdateUserDto {
-  name?: string;
-  email?: string;
-  avatarUrl?: string;
-}
-
-export interface UpdatePasswordDto {
-  oldPassword: string;
-  password: string;
-  confirmPassword: string;
-}
+import { IUser, UpdatePasswordDto, UpdateUserDto } from "../../models/user";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

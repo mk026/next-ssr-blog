@@ -1,15 +1,10 @@
 import { baseApi, HttpMethod } from "./baseApi";
-import { IComment } from "../../models/comment";
 import { config } from "../../config";
-
-export interface AddCommentDto {
-  postId: number;
-  content: string;
-}
-
-export interface UpdateCommentDto {
-  content: string;
-}
+import {
+  AddCommentDto,
+  IComment,
+  UpdateCommentDto,
+} from "../../models/comment";
 
 export const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
