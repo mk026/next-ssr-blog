@@ -4,6 +4,10 @@ import { Provider } from "react-redux";
 import Header from ".";
 import { setupStore } from "../../store";
 
+jest.mock("next/router", () => ({
+  useRouter: () => ({ pathname: "/posts" }),
+}));
+
 it("Should render Header", () => {
   const store = setupStore();
 
