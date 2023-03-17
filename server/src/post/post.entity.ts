@@ -24,7 +24,7 @@ export class Post {
   title: string;
 
   @Column()
-  description: string;
+  excerpt: string;
 
   @Column()
   content: string;

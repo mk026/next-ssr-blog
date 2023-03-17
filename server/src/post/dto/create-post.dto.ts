@@ -9,7 +9,7 @@ export class CreatePostDto {
   @IsNotEmpty()
   @MinLength(1)
   @MaxLength(500)
-  readonly description: string;
+  readonly excerpt: string;
 
   @IsNotEmpty()
   @MinLength(1)

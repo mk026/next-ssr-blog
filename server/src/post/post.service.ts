@@ -89,7 +89,7 @@ export class PostService {
   async addPost(createPostDto: CreatePostDto, userId: number) {
     const post = this.postRepository.create({
       title: createPostDto.title,
-      description: createPostDto.description,
+      excerpt: createPostDto.excerpt,
       content: createPostDto.content,
       user: { id: userId },
       category: { id: createPostDto.categoryId },
