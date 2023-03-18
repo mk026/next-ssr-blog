@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 
 import { User } from './user.entity';
 import { GetUsersDto } from './dto/get-users.dto';
+import { SearchUsersDto } from './dto/search-users.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { SignupCredentialsDto } from '../auth/dto/signup-credentials.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
@@ -25,6 +26,14 @@ export class UserService {
     return this.userRepository.find({
       skip: getUsersDto.skip,
       take: getUsersDto.take,
+    });
+  }
+
+  searchUsers(searchUsersDto: SearchUsersDto) {
+    return this.userRepository.find({
+      where: { name: searchUsersDto.name },
+      skip: searchUsersDto.skip,
+      take: searchUsersDto.take,
     });
   }
 
