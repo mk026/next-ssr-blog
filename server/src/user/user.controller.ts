@@ -6,11 +6,13 @@ import {
   Param,
   ParseIntPipe,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthUser } from '../common/decorators/auth-user.decorator';
+import { GetUsersDto } from './dto/get-users.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
@@ -20,8 +22,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  getUsers() {
-    return this.userService.getUsers();
+  getUsers(@Query() getUsersDto: GetUsersDto) {
+    return this.userService.getUsers(getUsersDto);
   }
 
   @Get(':id')

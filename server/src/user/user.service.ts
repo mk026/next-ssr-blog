@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { User } from './user.entity';
+import { GetUsersDto } from './dto/get-users.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { SignupCredentialsDto } from '../auth/dto/signup-credentials.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
@@ -20,8 +21,11 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  getUsers() {
-    return this.userRepository.find();
+  getUsers(getUsersDto: GetUsersDto) {
+    return this.userRepository.find({
+      skip: getUsersDto.skip,
+      take: getUsersDto.take,
+    });
   }
 
   async getUser(id: number) {
