@@ -6,7 +6,7 @@ export interface IPost {
   id: number;
   author: IUser;
   title: string;
-  description: string;
+  excerpt: string;
   content: string;
   category: ICategory;
   tags: ITag[];
@@ -17,7 +17,7 @@ export interface IPost {
 
 export interface AddPostDto {
   title: string;
-  description: string;
+  excerpt: string;
   content: string;
   categoryId: number;
 }
@@ -26,7 +26,7 @@ export interface UpdatePostDto extends Partial<AddPostDto> {}
 
 export interface SearchPostsDto {
   title?: string;
-  description?: string;
+  excerpt?: string;
   content?: string;
   authorId?: number;
   categoryId?: number;
