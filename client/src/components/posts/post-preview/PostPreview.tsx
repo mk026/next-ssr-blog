@@ -16,7 +16,7 @@ const PostPreview: FC<PostPreviewProps> = ({ post }) => {
           {post.title}
         </Typography>
       </Link>
-      <Typography variant="body1">{post.description}</Typography>
+      <Typography variant="body1">{post.excerpt}</Typography>
       <Link href={`/posts/${post.id}`} passHref>
         <Button component="a">Read more</Button>
       </Link>
