@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box } from "@mui/material";
 
 import {
   PostFormValues,
@@ -11,6 +10,7 @@ import { useAddPostMutation } from "../../../store/api/postApi";
 import { useRouter } from "next/router";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
+import Form from "../../common/form";
 
 const AddPostForm: FC = () => {
   const [addPost, { isLoading, isSuccess, data }] = useAddPostMutation();
@@ -31,15 +31,13 @@ const AddPostForm: FC = () => {
   }, [isSuccess, data, router]);
 
   return (
-    <FormProvider {...methods}>
-      <Box component="form" onSubmit={methods.handleSubmit(addPostHandler)}>
-        <FormField label="Title" name="title" />
-        <FormField label="Description" name="description" />
-        <FormField label="Content" name="content" />
-        <FormField label="Category" name="category" />
-        <LoadingButton isLoading={isLoading}>Add post</LoadingButton>
-      </Box>
-    </FormProvider>
+    <Form formMethods={methods} onSubmit={methods.handleSubmit(addPostHandler)}>
+      <FormField label="Title" name="title" />
+      <FormField label="Description" name="description" />
+      <FormField label="Content" name="content" />
+      <FormField label="Category" name="category" />
+      <LoadingButton isLoading={isLoading}>Add post</LoadingButton>
+    </Form>
   );
 };
 

@@ -1,8 +1,7 @@
 import { FC, useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
 
 import {
   SignupFormValues,
@@ -11,6 +10,7 @@ import {
 import { useSignupMutation } from "../../../store/api/authApi";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
+import Form from "../../common/form";
 
 const SignupForm: FC = () => {
   const [signup, { isLoading, isSuccess }] = useSignupMutation();
@@ -31,20 +31,18 @@ const SignupForm: FC = () => {
   }, [isSuccess, router]);
 
   return (
-    <FormProvider {...methods}>
-      <Box component="form" onSubmit={methods.handleSubmit(signupHandler)}>
-        <FormField name="name" label="Name" />
-        <FormField name="bio" label="About yourself" multiline />
-        <FormField name="email" label="Email" type="email" />
-        <FormField name="password" label="Password" type="password" />
-        <FormField
-          name="confirmPassword"
-          label="Confirm password"
-          type="password"
-        />
-        <LoadingButton isLoading={isLoading}>Signup</LoadingButton>
-      </Box>
-    </FormProvider>
+    <Form formMethods={methods} onSubmit={methods.handleSubmit(signupHandler)}>
+      <FormField name="name" label="Name" />
+      <FormField name="bio" label="About yourself" multiline />
+      <FormField name="email" label="Email" type="email" />
+      <FormField name="password" label="Password" type="password" />
+      <FormField
+        name="confirmPassword"
+        label="Confirm password"
+        type="password"
+      />
+      <LoadingButton isLoading={isLoading}>Signup</LoadingButton>
+    </Form>
   );
 };
 

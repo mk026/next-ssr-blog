@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box } from "@mui/material";
 
 import {
   UpdateProfileFormValues,
@@ -10,6 +9,7 @@ import {
 import { useUpdateUserMutation } from "../../../store/api/userApi";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
+import Form from "../../common/form";
 
 const UpdateProfileForm: FC = () => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
@@ -23,17 +23,15 @@ const UpdateProfileForm: FC = () => {
   };
 
   return (
-    <FormProvider {...methods}>
-      <Box
-        component="form"
-        onSubmit={methods.handleSubmit(updateProfileHandler)}
-      >
-        <FormField label="Name" name="name" />
-        <FormField label="About yourself" name="bio" multiline />
-        <FormField label="Email" name="email" />
-        <LoadingButton isLoading={isLoading}>Update profile</LoadingButton>
-      </Box>
-    </FormProvider>
+    <Form
+      formMethods={methods}
+      onSubmit={methods.handleSubmit(updateProfileHandler)}
+    >
+      <FormField label="Name" name="name" />
+      <FormField label="About yourself" name="bio" multiline />
+      <FormField label="Email" name="email" />
+      <LoadingButton isLoading={isLoading}>Update profile</LoadingButton>
+    </Form>
   );
 };
 

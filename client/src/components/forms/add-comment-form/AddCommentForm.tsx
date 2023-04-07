@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box } from "@mui/material";
 
 import {
   CommentFormValues,
@@ -12,6 +11,7 @@ import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
 
 import classes from "./AddCommentForm.module.scss";
+import Form from "../../common/form";
 
 interface AddCommentFormProps {
   postId: number;
@@ -29,16 +29,14 @@ const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
   };
 
   return (
-    <FormProvider {...methods}>
-      <Box
-        className={classes.form}
-        component="form"
-        onSubmit={methods.handleSubmit(addCommentHandler)}
-      >
-        <FormField label="Add comment" name="content" />
-        <LoadingButton isLoading={isLoading}>Add comment</LoadingButton>
-      </Box>
-    </FormProvider>
+    <Form
+      formMethods={methods}
+      onSubmit={methods.handleSubmit(addCommentHandler)}
+      className={classes.form}
+    >
+      <FormField label="Add comment" name="content" />
+      <LoadingButton isLoading={isLoading}>Add comment</LoadingButton>
+    </Form>
   );
 };
 

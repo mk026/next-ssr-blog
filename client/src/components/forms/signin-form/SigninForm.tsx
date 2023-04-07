@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box } from "@mui/material";
 
 import {
   SigninFormValues,
@@ -11,6 +10,7 @@ import { useSigninMutation } from "../../../store/api/authApi";
 import { useRouter } from "next/router";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
+import Form from "../../common/form";
 
 const SigninForm: FC = () => {
   const [signin, { isLoading, isSuccess }] = useSigninMutation();
@@ -31,13 +31,11 @@ const SigninForm: FC = () => {
   }, [isSuccess, router]);
 
   return (
-    <FormProvider {...methods}>
-      <Box component="form" onSubmit={methods.handleSubmit(signinHandler)}>
-        <FormField name="email" label="Email" type="email" />
-        <FormField name="password" label="Password" type="password" />
-        <LoadingButton isLoading={isLoading}>Signin</LoadingButton>
-      </Box>
-    </FormProvider>
+    <Form formMethods={methods} onSubmit={methods.handleSubmit(signinHandler)}>
+      <FormField name="email" label="Email" type="email" />
+      <FormField name="password" label="Password" type="password" />
+      <LoadingButton isLoading={isLoading}>Signin</LoadingButton>
+    </Form>
   );
 };
 
