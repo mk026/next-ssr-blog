@@ -1,37 +1,15 @@
-import { FC, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { FC } from "react";
 
-import {
-  PostFormValues,
-  postValidationSchema,
-} from "../../../validation/postValidation";
-import { useAddPostMutation } from "../../../store/api/postApi";
-import { useRouter } from "next/router";
+import { useAddPostForm } from "../../../hooks/useAddPostForm";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
 import Form from "../../common/form";
 
 const AddPostForm: FC = () => {
-  const [addPost, { isLoading, isSuccess, data }] = useAddPostMutation();
-  const methods = useForm<PostFormValues>({
-    mode: "onBlur",
-    resolver: yupResolver(postValidationSchema),
-  });
-  const router = useRouter();
-
-  const addPostHandler = (values: PostFormValues) => {
-    addPost(values);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      router.push(`/posts/${data?.id}`);
-    }
-  }, [isSuccess, data, router]);
+  const { formMethods, onSubmit, isLoading } = useAddPostForm();
 
   return (
-    <Form formMethods={methods} onSubmit={methods.handleSubmit(addPostHandler)}>
+    <Form formMethods={formMethods} onSubmit={onSubmit}>
       <FormField label="Title" name="title" />
       <FormField label="Description" name="description" />
       <FormField label="Content" name="content" />
