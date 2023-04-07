@@ -1,28 +1,15 @@
 import { FC } from "react";
-import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 
+import { useSearchPostForm } from "../../../hooks/useSearchPostForm";
 import FormField from "../../common/form-field";
 import Form from "../../common/form";
 
-export interface SearchPostFormValues {
-  query: string;
-}
-
 const SearchPostForm: FC = () => {
-  const methods = useForm<SearchPostFormValues>({
-    mode: "onBlur",
-  });
-
-  const searchPostHandler = ({ query }: SearchPostFormValues) => {
-    console.log(query);
-  };
+  const { formMethods, onSubmit } = useSearchPostForm();
 
   return (
-    <Form
-      formMethods={methods}
-      onSubmit={methods.handleSubmit(searchPostHandler)}
-    >
+    <Form formMethods={formMethods} onSubmit={onSubmit}>
       <FormField label="Search post" name="query" />
       <Button type="submit">Search</Button>
     </Form>
