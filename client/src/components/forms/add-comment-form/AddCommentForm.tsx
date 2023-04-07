@@ -1,37 +1,23 @@
 import { FC } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
-import {
-  CommentFormValues,
-  commentValidationSchema,
-} from "../../../validation/commentValidation";
-import { useAddPostCommentMutation } from "../../../store/api/commentApi";
+import { useAddCommentForm } from "../../../hooks/useAddCommentForm";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
+import Form from "../../common/form";
 
 import classes from "./AddCommentForm.module.scss";
-import Form from "../../common/form";
 
 interface AddCommentFormProps {
   postId: number;
 }
 
 const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
-  const [addPostComment, { isLoading }] = useAddPostCommentMutation();
-  const methods = useForm<CommentFormValues>({
-    mode: "onBlur",
-    resolver: yupResolver(commentValidationSchema),
-  });
-
-  const addCommentHandler = (values: CommentFormValues) => {
-    addPostComment({ ...values, postId });
-  };
+  const { formMethods, onSubmit, isLoading } = useAddCommentForm(postId);
 
   return (
     <Form
-      formMethods={methods}
-      onSubmit={methods.handleSubmit(addCommentHandler)}
+      formMethods={formMethods}
+      onSubmit={onSubmit}
       className={classes.form}
     >
       <FormField label="Add comment" name="content" />
