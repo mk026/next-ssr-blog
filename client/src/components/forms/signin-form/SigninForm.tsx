@@ -1,37 +1,15 @@
-import { FC, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { FC } from "react";
 
-import {
-  SigninFormValues,
-  signinValidationSchema,
-} from "../../../validation/signinValidation";
-import { useSigninMutation } from "../../../store/api/authApi";
-import { useRouter } from "next/router";
+import { useSigninForm } from "../../../hooks/useSigninForm";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
 import Form from "../../common/form";
 
 const SigninForm: FC = () => {
-  const [signin, { isLoading, isSuccess }] = useSigninMutation();
-  const router = useRouter();
-  const methods = useForm<SigninFormValues>({
-    mode: "onBlur",
-    resolver: yupResolver(signinValidationSchema),
-  });
-
-  const signinHandler = (values: SigninFormValues) => {
-    signin(values);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      router.push("/");
-    }
-  }, [isSuccess, router]);
+  const { formMethods, onSubmit, isLoading } = useSigninForm();
 
   return (
-    <Form formMethods={methods} onSubmit={methods.handleSubmit(signinHandler)}>
+    <Form formMethods={formMethods} onSubmit={onSubmit}>
       <FormField name="email" label="Email" type="email" />
       <FormField name="password" label="Password" type="password" />
       <LoadingButton isLoading={isLoading}>Signin</LoadingButton>
