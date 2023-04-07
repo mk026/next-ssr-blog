@@ -11,7 +11,7 @@ export const postValidationSchema = yup.object({
     .min(postRules.title.min)
     .max(postRules.title.max)
     .required(),
-  description: yup
+  excerpt: yup
     .string()
     .min(postRules.description.min)
     .max(postRules.description.max)
