@@ -1,32 +1,15 @@
 import { FC } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
-import {
-  UpdatePasswordFormValues,
-  updatePasswordValidationSchema,
-} from "../../../validation/updatePasswordValidation";
-import { useUpdatePasswordMutation } from "../../../store/api/userApi";
+import { useUpdatePasswordForm } from "../../../hooks/useUpdatePasswordForm";
 import FormField from "../../common/form-field";
 import LoadingButton from "../../common/loading-button";
 import Form from "../../common/form";
 
 const UpdatePasswordForm: FC = () => {
-  const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
-  const methods = useForm<UpdatePasswordFormValues>({
-    mode: "onBlur",
-    resolver: yupResolver(updatePasswordValidationSchema),
-  });
-
-  const updatePasswordHandler = (values: UpdatePasswordFormValues) => {
-    updatePassword(values);
-  };
+  const { formMethods, onSubmit, isLoading } = useUpdatePasswordForm();
 
   return (
-    <Form
-      formMethods={methods}
-      onSubmit={methods.handleSubmit(updatePasswordHandler)}
-    >
+    <Form formMethods={formMethods} onSubmit={onSubmit}>
       <FormField label="Old password" name="oldPassword" />
       <FormField label="New password" name="password" />
       <FormField label="Confirm password" name="confirmPassword" />
