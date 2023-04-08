@@ -25,7 +25,7 @@ it("Should render PostInfo", () => {
     category: fakeCategory,
     title: "Fake Title",
     content: "Fake Content",
-    description: "Fake Description",
+    excerpt: "Fake Excerpt",
     views: 1,
     tags: [],
     createdAt: new Date().toLocaleString(),
