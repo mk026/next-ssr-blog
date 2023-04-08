@@ -14,15 +14,13 @@ const Header: FC = () => {
   const { isAuth } = useAppSelector(getAuthState);
   const { signout } = useActions(authActions);
 
-  const signoutHandler = () => signout();
-
   return (
     <Box component="header" data-testid="header">
       <Stack direction="row">
         <Navbar />
         {!isAuth && <AuthLinks />}
         {isAuth && (
-          <Button className={classes["signout-btn"]} onClick={signoutHandler}>
+          <Button className={classes["signout-btn"]} onClick={signout}>
             Signout
           </Button>
         )}
