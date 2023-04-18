@@ -1,29 +1,22 @@
 import { FC } from "react";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
-import Navbar from "../navbar";
 import { useAppSelector } from "../../hooks/redux";
 import { getAuthState } from "../../store/selectors/authSelectors";
+import Navbar from "../navbar";
+import SignoutButton from "../signout-button";
 import AuthLinks from "../auth-links";
-import { useActions } from "../../hooks/useActions";
-import { authActions } from "../../store/slices/authSlice";
 
 import classes from "./Header.module.scss";
 
 const Header: FC = () => {
   const { isAuth } = useAppSelector(getAuthState);
-  const { signout } = useActions(authActions);
 
   return (
-    <Box component="header" data-testid="header">
+    <Box component="header" data-testid="header" classes={classes.header}>
       <Stack direction="row">
         <Navbar />
-        {!isAuth && <AuthLinks />}
-        {isAuth && (
-          <Button className={classes["signout-btn"]} onClick={signout}>
-            Signout
-          </Button>
-        )}
+        {!isAuth ? <AuthLinks /> : <SignoutButton />}
       </Stack>
     </Box>
   );
