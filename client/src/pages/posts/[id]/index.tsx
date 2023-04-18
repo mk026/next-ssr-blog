@@ -1,25 +1,19 @@
 import type { GetStaticPaths, NextPage } from "next";
-import { useRouter } from "next/router";
 
-import {
-  commentApi,
-  useGetPostCommentsQuery,
-} from "../../../store/api/commentApi";
-import { postApi, useGetPostQuery } from "../../../store/api/postApi";
+import { commentApi } from "../../../store/api/commentApi";
+import { postApi } from "../../../store/api/postApi";
 import FullPost from "../../../components/posts/full-post";
 import PostComments from "../../../components/posts/post-comments";
 import wrapper, { setupStore } from "../../../store";
+import { usePost } from "../../../hooks/usePost";
 
 const Post: NextPage = () => {
-  const router = useRouter();
-  const postId = Number(router.query.id);
-  const { data: post } = useGetPostQuery(postId);
-  const { data: comments } = useGetPostCommentsQuery(postId);
+  const { post, comments } = usePost();
 
   return (
     <>
       <FullPost post={post} />
-      <PostComments postId={postId} comments={comments} />
+      <PostComments postId={post?.id} comments={comments} />
     </>
   );
 };
