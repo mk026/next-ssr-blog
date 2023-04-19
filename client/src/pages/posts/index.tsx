@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
-import Link from "next/link";
-import { Button, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 import PostsList from "../../components/posts/posts-list";
 import PostCategories from "../../components/posts/post-categories";
 import PopularTags from "../../components/tags/popular-tags";
 import CustomHead from "../../components/common/custom-head";
+import AddPostLink from "../../components/posts/add-post-link";
 import wrapper from "../../store";
 import { postApi, useGetPostsQuery } from "../../store/api/postApi";
 import { categoryApi } from "../../store/api/categoryApi";
@@ -19,9 +19,7 @@ const Posts: NextPage = () => {
       <CustomHead title="Posts" />
       <Container>
         <Typography variant="h1">Posts</Typography>
-        <Link href="/posts/add">
-          <Button>Add new post</Button>
-        </Link>
+        <AddPostLink />
         <PostCategories />
         <PopularTags />
         <PostsList posts={posts} />
