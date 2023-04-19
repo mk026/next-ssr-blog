@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import { Typography } from "@mui/material";
 
 import { useGetUserQuery, userApi } from "../../../store/api/userApi";
 import { useRouter } from "next/router";
+import CustomHead from "../../../components/common/custom-head";
 import wrapper from "../../../store";
 
 const Profile: NextPage = () => {
@@ -13,9 +13,7 @@ const Profile: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>{user?.name || "User Profile"}</title>
-      </Head>
+      <CustomHead title={user?.name || "User Profile"} />
       <Typography variant="h1">{user?.name}</Typography>
       <Typography variant="body1">{user?.bio}</Typography>
     </>

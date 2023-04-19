@@ -1,17 +1,15 @@
 import { NextPage } from "next";
-import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
 import AddPostForm from "../../../components/forms/add-post-form";
+import CustomHead from "../../../components/common/custom-head";
 
 const AddPost: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Posts</title>
-      </Head>
+      <CustomHead title="Create New Post" />
       <Container>
-        <Typography variant="h1">Add Post Page</Typography>
+        <Typography variant="h1">Create New Post</Typography>
         <AddPostForm />
       </Container>
     </>

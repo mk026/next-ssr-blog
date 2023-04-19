@@ -1,18 +1,16 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
 import SigninForm from "../../components/forms/signin-form";
 import SignupLink from "../../components/signup-link";
+import CustomHead from "../../components/common/custom-head";
 
 const Signin: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Signin</title>
-      </Head>
+      <CustomHead title="Signin" />
       <Container>
-        <Typography variant="h1">Signin page</Typography>
+        <Typography variant="h1">Signin</Typography>
         <SigninForm />
         <SignupLink />
       </Container>

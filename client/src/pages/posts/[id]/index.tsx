@@ -2,16 +2,18 @@ import type { GetStaticPaths, NextPage } from "next";
 
 import { commentApi } from "../../../store/api/commentApi";
 import { postApi } from "../../../store/api/postApi";
+import { usePost } from "../../../hooks/usePost";
 import FullPost from "../../../components/posts/full-post";
 import PostComments from "../../../components/posts/post-comments";
+import CustomHead from "../../../components/common/custom-head";
 import wrapper, { setupStore } from "../../../store";
-import { usePost } from "../../../hooks/usePost";
 
 const Post: NextPage = () => {
   const { post, comments } = usePost();
 
   return (
     <>
+      <CustomHead title={post?.title || "Post"} />
       <FullPost post={post} />
       <PostComments postId={post?.id} comments={comments} />
     </>
