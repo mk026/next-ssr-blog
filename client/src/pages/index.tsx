@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import type { NextPage } from "next";
-import CustomHead from "../components/common/custom-head/CustomHead";
+
+import CustomHead from "../components/common/custom-head";
 
 const Home: NextPage = () => {
   return (
