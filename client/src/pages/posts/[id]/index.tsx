@@ -9,13 +9,13 @@ import CustomHead from "../../../components/common/custom-head";
 import wrapper, { setupStore } from "../../../store";
 
 const Post: NextPage = () => {
-  const { post, comments } = usePost();
+  const { post } = usePost();
 
   return (
     <>
       <CustomHead title={post?.title || "Post"} />
       <FullPost post={post} />
-      <PostComments comments={comments} />
+      <PostComments />
     </>
   );
 };

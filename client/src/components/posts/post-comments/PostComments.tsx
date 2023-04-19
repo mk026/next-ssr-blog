@@ -1,15 +1,13 @@
 import { FC } from "react";
 import { CircularProgress } from "@mui/material";
 
-import { IComment } from "../../../models/comment";
+import { usePostComments } from "../../../hooks/usePostComments";
 import CommentsList from "../../comments/comments-list";
 import AddCommentForm from "../../forms/add-comment-form";
 
-interface PostCommentsProps {
-  comments?: IComment[];
-}
+const PostComments: FC = () => {
+  const { comments } = usePostComments();
 
-const PostComments: FC<PostCommentsProps> = ({ comments }) => {
   if (!comments) {
     return <CircularProgress />;
   }
