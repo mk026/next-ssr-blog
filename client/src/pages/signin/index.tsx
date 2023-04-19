@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
 import SigninForm from "../../components/forms/signin-form";
+import SignupLink from "../../components/signup-link";
 
 const Signin: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Signin: NextPage = () => {
       <Container>
         <Typography variant="h1">Signin page</Typography>
         <SigninForm />
+        <SignupLink />
       </Container>
     </>
   );
