@@ -15,7 +15,7 @@ const Post: NextPage = () => {
     <>
       <CustomHead title={post?.title || "Post"} />
       <FullPost post={post} />
-      <PostComments postId={post?.id} comments={comments} />
+      <PostComments comments={comments} />
     </>
   );
 };

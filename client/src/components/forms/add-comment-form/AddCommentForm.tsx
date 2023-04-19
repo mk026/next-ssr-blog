@@ -7,12 +7,8 @@ import Form from "../../common/form";
 
 import classes from "./AddCommentForm.module.scss";
 
-interface AddCommentFormProps {
-  postId: number;
-}
-
-const AddCommentForm: FC<AddCommentFormProps> = ({ postId }) => {
-  const { formMethods, onSubmit, isLoading } = useAddCommentForm(postId);
+const AddCommentForm: FC = () => {
+  const { formMethods, onSubmit, isLoading } = useAddCommentForm();
 
   return (
     <Form

@@ -6,18 +6,17 @@ import CommentsList from "../../comments/comments-list";
 import AddCommentForm from "../../forms/add-comment-form";
 
 interface PostCommentsProps {
-  postId?: number;
   comments?: IComment[];
 }
 
-const PostComments: FC<PostCommentsProps> = ({ postId, comments }) => {
-  if (!comments || !postId) {
+const PostComments: FC<PostCommentsProps> = ({ comments }) => {
+  if (!comments) {
     return <CircularProgress />;
   }
 
   return (
     <>
-      <AddCommentForm postId={postId} />
+      <AddCommentForm />
       <CommentsList comments={comments} />
     </>
   );
