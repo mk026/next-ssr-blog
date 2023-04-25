@@ -1,15 +1,13 @@
 import type { NextPage } from "next";
 import { Typography } from "@mui/material";
 
-import { useGetUserQuery, userApi } from "../../../store/api/userApi";
-import { useRouter } from "next/router";
+import { userApi } from "../../../store/api/userApi";
+import { useProfile } from "../../../hooks/useProfile";
 import CustomHead from "../../../components/common/custom-head";
 import wrapper from "../../../store";
 
 const Profile: NextPage = () => {
-  const router = useRouter();
-  const userId = router.query.id as string;
-  const { data: user } = useGetUserQuery(userId);
+  const { user } = useProfile();
 
   return (
     <>
