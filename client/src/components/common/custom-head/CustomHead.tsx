@@ -10,7 +10,7 @@ const CustomHead: FC<CustomHeadProps> = ({ title, description, children }) => {
   return (
     <Head>
       <meta name="description" content={description} />
-      <title>{title}</title>
+      <title>{title || "NextJS Blog"}</title>
       {children}
     </Head>
   );
