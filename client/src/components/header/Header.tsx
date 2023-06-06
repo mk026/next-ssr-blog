@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Box, Stack } from "@mui/material";
+import { AppBar, Box, Stack } from "@mui/material";
 
 import { useAppSelector } from "../../hooks/redux";
 import { getAuthState } from "../../store/selectors/authSelectors";
@@ -13,12 +13,12 @@ const Header: FC = () => {
   const { isAuth } = useAppSelector(getAuthState);
 
   return (
-    <Box component="header" data-testid="header" classes={classes.header}>
+    <AppBar data-testid="header" className={classes.header}>
       <Stack direction="row">
         <Navbar />
         {!isAuth ? <AuthLinks /> : <SignoutButton />}
       </Stack>
-    </Box>
+    </AppBar>
   );
 };
 
