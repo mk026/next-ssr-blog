@@ -46,6 +46,8 @@ export const {
   useGetPostsQuery,
   useGetPopularPostsQuery,
   useGetPostQuery,
+  useSearchPostsQuery,
+  useLazySearchPostsQuery,
   useAddPostMutation,
   useUpdatePostMutation,
   useDeletePostMutation,
