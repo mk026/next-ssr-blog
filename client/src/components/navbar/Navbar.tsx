@@ -10,6 +10,11 @@ const Navbar: FC = () => {
   return (
     <Tabs component="nav" value={pathname}>
       <TabLink value="/posts" label="Posts" href="/posts" />
+      <TabLink
+        value="/posts/search"
+        label="Search Posts"
+        href="/posts/search"
+      />
       <TabLink value="/profile" label="Profile" href="/profile" />
     </Tabs>
   );
