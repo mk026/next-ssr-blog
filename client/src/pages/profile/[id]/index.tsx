@@ -14,6 +14,7 @@ const Profile: NextPage = () => {
       <CustomHead title={user?.name || "User Profile"} />
       <Typography variant="h1">{user?.name}</Typography>
       <Typography variant="body1">{user?.bio}</Typography>
+      <Typography variant="body1">Member since {user?.createdAt}</Typography>
     </>
   );
 };
