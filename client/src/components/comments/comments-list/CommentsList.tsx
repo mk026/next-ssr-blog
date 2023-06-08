@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 import { IComment } from "../../../models/comment";
 import CommentItem from "../comment-item";
@@ -14,13 +14,11 @@ const CommentsList: FC<CommentsListProps> = ({ comments = [] }) => {
   }
 
   return (
-    <ul>
+    <Stack>
       {comments.map((comment) => (
-        <li key={comment.id}>
-          <CommentItem comment={comment} />
-        </li>
+        <CommentItem key={comment.id} comment={comment} />
       ))}
-    </ul>
+    </Stack>
   );
 };
 
