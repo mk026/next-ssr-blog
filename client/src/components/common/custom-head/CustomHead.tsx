@@ -9,7 +9,10 @@ interface CustomHeadProps extends PropsWithChildren {
 const CustomHead: FC<CustomHeadProps> = ({ title, description, children }) => {
   return (
     <Head>
-      <meta name="description" content={description} />
+      <meta
+        name="description"
+        content={description || "NextJS Blog Platform Application"}
+      />
       <title>{title || "NextJS Blog"}</title>
       {children}
     </Head>
