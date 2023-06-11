@@ -1,11 +1,15 @@
-import { Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 
 import { useGetPopularTagsQuery } from "../../../store/api/tagApi";
 import TagsList from "../tags-list";
 
 const PopularTags: FC = () => {
-  const { data } = useGetPopularTagsQuery();
+  const { data, isLoading } = useGetPopularTagsQuery();
+
+  if (isLoading) {
+    return <p>Loading Tags...</p>;
+  }
 
   return (
     <Stack>
