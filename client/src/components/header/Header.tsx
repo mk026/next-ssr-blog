@@ -11,7 +11,7 @@ import UserMenu from "../user-menu";
 import classes from "./Header.module.scss";
 
 const Header: FC = () => {
-  const { isAuth } = useAppSelector(getAuthState);
+  const { isAuth, user } = useAppSelector(getAuthState);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const toggleMenu = () => setMenuIsOpen((prev) => !prev);
@@ -20,7 +20,11 @@ const Header: FC = () => {
     <AppBar data-testid="header" className={classes.header}>
       <Stack direction="row">
         <Navbar />
-        {!isAuth ? <AuthLinks /> : <UserMenuButton onClick={toggleMenu} />}
+        {!isAuth ? (
+          <AuthLinks />
+        ) : (
+          <UserMenuButton onClick={toggleMenu} name={user!.name} />
+        )}
       </Stack>
       {menuIsOpen && <UserMenu />}
     </AppBar>

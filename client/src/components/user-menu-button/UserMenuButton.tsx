@@ -3,10 +3,11 @@ import { Button } from "@mui/material";
 
 interface UserMenuButtonProps {
   onClick: () => void;
+  name: string;
 }
 
-const UserMenuButton: FC<UserMenuButtonProps> = ({ onClick }) => {
-  return <Button onClick={onClick}>Open User Menu</Button>;
+const UserMenuButton: FC<UserMenuButtonProps> = ({ onClick, name }) => {
+  return <Button onClick={onClick}>{name}</Button>;
 };
 
 export default UserMenuButton;
