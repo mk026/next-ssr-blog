@@ -1,4 +1,4 @@
-import { CircularProgress, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { FC } from "react";
 
 import { useGetPopularTagsQuery } from "../../../store/api/tagApi";
