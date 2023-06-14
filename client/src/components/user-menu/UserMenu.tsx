@@ -1,17 +1,21 @@
 import { FC } from "react";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
+import Link from "next/link";
 
 import { useActions } from "../../hooks/useActions";
 import { authActions } from "../../store/slices/authSlice";
+import { useAppSelector } from "../../hooks/redux";
+import { getAuthState } from "../../store/selectors/authSelectors";
 
 const UserMenu: FC = () => {
   const { signout } = useActions(authActions);
+  const { user } = useAppSelector(getAuthState);
 
   return (
     <Stack>
-      <Typography>Profile</Typography>
-      <Typography>Posts</Typography>
-      <Typography>Bookmarks</Typography>
+      <Link href="/profile">Profile</Link>
+      <Link href={`/profile/${user?.id}/posts`}>Posts</Link>
+      <Link href={`/profile/${user?.id}/bookmarks`}>Bookmarks</Link>
       <Button onClick={signout}>Signout</Button>
     </Stack>
   );
