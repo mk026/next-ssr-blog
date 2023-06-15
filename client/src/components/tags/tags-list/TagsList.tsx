@@ -10,7 +10,7 @@ interface TagListProps {
 
 const TagsList: FC<TagListProps> = ({ tags }) => {
   return (
-    <Stack direction="row">
+    <Stack direction="row" data-testid="tagslist">
       {tags.map((tag) => (
         <TagItem key={tag.id} tag={tag} />
       ))}
