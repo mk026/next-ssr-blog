@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Stack } from "@mui/material";
 
 import { ITag } from "../../../models/tag";
 import TagItem from "../tag-item";
@@ -9,11 +10,11 @@ interface TagListProps {
 
 const TagsList: FC<TagListProps> = ({ tags }) => {
   return (
-    <ul>
+    <Stack direction="row">
       {tags.map((tag) => (
         <TagItem key={tag.id} tag={tag} />
       ))}
-    </ul>
+    </Stack>
   );
 };
 
