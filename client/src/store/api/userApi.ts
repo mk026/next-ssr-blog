@@ -1,14 +1,23 @@
 import { baseApi, HttpMethod } from "./baseApi";
 import { config } from "../../config";
-import { IUser, UpdatePasswordDto, UpdateUserDto } from "../../models/user";
+import {
+  IUser,
+  SearchUsersDto,
+  UpdatePasswordDto,
+  UpdateUserDto,
+} from "../../models/user";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query<IUser, string>({
       query: (id) => ({ url: `${config.usersUrl}/${id}` }),
     }),
-    searchUsers: builder.query<IUser, void>({
-      query: () => ({ url: config.searchUsersUrl }),
+    searchUsers: builder.query<IUser, SearchUsersDto>({
+      query: (params) => ({
+        url: config.searchUsersUrl,
+        method: HttpMethod.GET,
+        params,
+      }),
     }),
     updateUser: builder.mutation<IUser, UpdateUserDto>({
       query: (body) => ({ url: config.usersUrl, method: HttpMethod.PUT, body }),

@@ -19,3 +19,7 @@ export interface UpdatePasswordDto {
   password: string;
   confirmPassword: string;
 }
+
+export interface SearchUsersDto {
+  name: string;
+}
