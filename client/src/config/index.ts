@@ -3,6 +3,7 @@ export const config = {
   signupUrl: process.env.NEXT_PUBLIC_API_SIGNUP_URL!,
   signinUrl: process.env.NEXT_PUBLIC_API_SIGNIN_URL!,
   usersUrl: process.env.NEXT_PUBLIC_API_USERS_URL!,
+  searchUsersUrl: process.env.NEXT_PUBLIC_API_SEARCH_USERS_URL!,
   passwordUpdateUrl: process.env.NEXT_PUBLIC_API_PASSWORD_UPDATE_URL!,
   postsUrl: process.env.NEXT_PUBLIC_API_POSTS_URL!,
   popularPostsUrl: process.env.NEXT_PUBLIC_API_POPULAR_POSTS_URL!,
