@@ -12,7 +12,7 @@ export const userApi = baseApi.injectEndpoints({
     getUser: builder.query<IUser, string>({
       query: (id) => ({ url: `${config.usersUrl}/${id}` }),
     }),
-    searchUsers: builder.query<IUser, SearchUsersDto>({
+    searchUsers: builder.query<IUser[], SearchUsersDto>({
       query: (params) => ({
         url: config.searchUsersUrl,
         method: HttpMethod.GET,
