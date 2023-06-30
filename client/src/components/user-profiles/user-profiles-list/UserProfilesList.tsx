@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Stack } from "@mui/material";
 
 import { IUser } from "../../../models/user";
 import UserProfileItem from "../user-profile-item";
@@ -9,11 +10,11 @@ interface UserProfilesListProps {
 
 const UserProfilesList: FC<UserProfilesListProps> = ({ users }) => {
   return (
-    <div>
+    <Stack>
       {users.map((user) => (
         <UserProfileItem key={user.id} user={user} />
       ))}
-    </div>
+    </Stack>
   );
 };
 
