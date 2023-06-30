@@ -1,13 +1,15 @@
 import type { NextPage } from "next";
-import { Typography } from "@mui/material";
 
 import CustomHead from "../../../components/common/custom-head";
+import PageTitle from "../../../components/common/page-title";
+import SearchUserForm from "../../../components/forms/search-user-form";
 
 const SearchProfile: NextPage = () => {
   return (
     <>
       <CustomHead title="Search Profile" />
-      <Typography>Search Profile</Typography>
+      <PageTitle>Search Profile</PageTitle>
+      <SearchUserForm />
     </>
   );
 };
