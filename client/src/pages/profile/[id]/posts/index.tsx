@@ -11,7 +11,7 @@ const UserPosts: NextPage = () => {
 
   return (
     <>
-      <CustomHead title={`${user?.name} Posts` || "User Posts"} />
+      <CustomHead title={`${user?.name || "User"} Posts`} />
       <Typography variant="h1">Posts of {user?.name}</Typography>
     </>
   );
