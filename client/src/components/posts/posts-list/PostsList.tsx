@@ -1,5 +1,5 @@
-import { Stack } from "@mui/material";
 import { FC } from "react";
+import { Stack, Typography } from "@mui/material";
 
 import { IPost } from "../../../models/post";
 import PostPreview from "../post-preview";
@@ -10,7 +10,7 @@ interface PostsListProps {
 
 const PostsList: FC<PostsListProps> = ({ posts }) => {
   if (!posts.length) {
-    return <p>No posts found</p>;
+    return <Typography variant="body1">No posts found</Typography>;
   }
 
   return (
