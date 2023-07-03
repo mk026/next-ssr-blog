@@ -7,12 +7,14 @@ import { authActions } from "../../store/slices/authSlice";
 import { useAppSelector } from "../../hooks/redux";
 import { getAuthState } from "../../store/selectors/authSelectors";
 
+import classes from "./UserMenu.module.scss";
+
 const UserMenu: FC = () => {
   const { signout } = useActions(authActions);
   const { user } = useAppSelector(getAuthState);
 
   return (
-    <Stack>
+    <Stack className={classes.menu}>
       <Link href="/profile">Profile</Link>
       <Link href={`/profile/${user?.id}/posts`}>Posts</Link>
       <Link href={`/profile/${user?.id}/bookmarks`}>Bookmarks</Link>
