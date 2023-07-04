@@ -15,6 +15,11 @@ const Navbar: FC = () => {
         label="Search Posts"
         href="/posts/search"
       />
+      <TabLink
+        value="/profile/search"
+        label="Search Users"
+        href="/profile/search"
+      />
       <TabLink value="/profile" label="Profile" href="/profile" />
     </Tabs>
   );
