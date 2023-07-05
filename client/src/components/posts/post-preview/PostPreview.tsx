@@ -1,8 +1,10 @@
 import { FC } from "react";
+import Link from "next/link";
 import { Button, Card, Typography } from "@mui/material";
 
 import { IPost } from "../../../models/post";
-import Link from "next/link";
+
+import classes from "./PostPreview.module.scss";
 
 interface PostPreviewProps {
   post: IPost;
@@ -10,7 +12,7 @@ interface PostPreviewProps {
 
 const PostPreview: FC<PostPreviewProps> = ({ post }) => {
   return (
-    <Card>
+    <Card className={classes.preview}>
       <Link href={`/posts/${post.id}`} passHref>
         <Typography component="a" variant="h2">
           {post.title}
