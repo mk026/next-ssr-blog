@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import SignupForm from "../../components/forms/signup-form";
 import SigninLink from "../../components/signin-link";
@@ -9,11 +9,9 @@ const Signup: NextPage = () => {
   return (
     <>
       <CustomHead title="Signup" />
-      <Container>
-        <Typography variant="h1">Signup</Typography>
-        <SignupForm />
-        <SigninLink />
-      </Container>
+      <Typography variant="h1">Signup</Typography>
+      <SignupForm />
+      <SigninLink />
     </>
   );
 };
