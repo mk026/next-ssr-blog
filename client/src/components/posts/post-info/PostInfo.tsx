@@ -3,13 +3,15 @@ import { FC } from "react";
 
 import { IPost } from "../../../models/post";
 
+import classes from "./PostInfo.module.scss";
+
 interface PostInfoProps {
   post: IPost;
 }
 
 const PostInfo: FC<PostInfoProps> = ({ post }) => {
   return (
-    <Stack direction="row">
+    <Stack direction="row" className={classes.info}>
       <Typography>Views: {post.views}</Typography>
     </Stack>
   );
