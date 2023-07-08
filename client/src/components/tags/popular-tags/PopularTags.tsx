@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 import { useGetPopularTagsQuery } from "../../../store/api/tagApi";
 import TagsList from "../tags-list";
@@ -14,10 +14,12 @@ const PopularTags: FC = () => {
   }
 
   return (
-    <Stack className={classes.tags}>
-      <Typography>Popular Tags</Typography>
+    <Paper className={classes.tags}>
+      <Typography variant="h3" className={classes.title}>
+        Popular Tags
+      </Typography>
       <TagsList tags={data || []} />
-    </Stack>
+    </Paper>
   );
 };
 
